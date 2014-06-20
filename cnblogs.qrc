@@ -1,0 +1,32 @@
+<RCC>
+    <qresource prefix="/syspic">
+        <file alias="close_highlight">Resources/images/btn_close_highlight.png</file>
+        <file alias="close_normal">Resources/images/btn_close_normal.png</file>
+        <file alias="mini_highlight">Resources/images/btn_mini_highlight.png</file>
+        <file alias="mini_normal">Resources/images/btn_mini_normal.png</file>
+        <file alias="logo">Resources/images/logo.png</file>
+        <file alias="trayicon">Resources/images/trayIcon.png</file>
+        <file alias="skin_normal">Resources/images/btn_Skin_down.png</file>
+        <file alias="skin_highlight">Resources/images/SkinIcon.png</file>
+    </qresource>
+    <qresource prefix="/audio">
+        <file alias="notification">Resources/audio/Global.wav</file>
+    </qresource>
+    <qresource prefix="/panelbutton">
+        <file alias="alternative">Resources/images/alternative.png</file>
+        <file alias="myblog">Resources/images/blog.png</file>
+        <file alias="comment">Resources/images/comment.png</file>
+        <file alias="home">Resources/images/home.png</file>
+        <file alias="browser">Resources/images/IE.png</file>
+        <file alias="news">Resources/images/news.png</file>
+        <file alias="preference">Resources/images/prefer.png</file>
+        <file alias="essence">Resources/images/presure.png</file>
+        <file alias="refresh">Resources/images/refresh.png</file>
+        <file alias="setting">Resources/images/hammer.png</file>
+        <file alias="about">Resources/images/info.png</file>
+        <file alias="recommend">Resources/images/messenger.png</file>
+    </qresource>
+    <qresource prefix="/style">
+        <file alias="mainframe">mainframe.qss</file>
+    </qresource>
+</RCC>

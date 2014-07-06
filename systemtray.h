@@ -13,7 +13,9 @@
 #include <QHBoxLayout>
 #include <QPainter>
 #include <QEvent>
-
+/**
+ * To show system tray for the main program
+ */
 class SystemTray : public QSystemTrayIcon
 {
 	Q_OBJECT

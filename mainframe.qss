@@ -1,0 +1,81 @@
+#refresh, #login, #about {
+	background: transparent;
+	width: 90px;
+	height: 35;
+	border: none;
+	color: rgb(202, 221, 254);
+	font-size: 14px;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+
+#open {
+	background: transparent;
+	width: 110px;
+	height: 35;
+	border: none;
+	color: rgb(202, 221, 254);
+	font-size: 14px;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+
+#refresh:hover, #open:hover, #login:hover, #about:hover {
+	border: 1px solid rgb(123, 129, 188);
+}
+
+CustomToolButton {
+	background: transparent;
+	font-size: 12px;
+	font-family: sans-serif;
+}
+
+CustomToolButton:hover {
+	border: 1px solid rgb(123, 129, 188);
+}
+
+QListWidget {
+	border: 1px solid rgb(123, 129, 188);
+}
+
+QToolTip {
+	background: white;
+	border: 1px solid gray;
+	color: black;
+}
+
+QMenu{
+    background:white;
+	border:1px solid lightgray;
+}
+
+QMenu::item{
+	padding:0px 20px 0px 20px;
+	margin-left: 5px;
+	height:25px;
+}
+
+QMenu::item:selected:enabled{
+    background: rgb(210, 225, 255);
+	color: white;
+}
+
+QMenu::separator{
+    height:1px;
+    background: lightgray;
+	margin:2px 0px 2px 0px;
+}
+
+QMenu::item:selected:!enabled{
+    background:transparent;
+}
+
+QPushButton#TrayButton {
+	border: none;
+	background: transparent;
+}
+
+QPushButton#TrayButton:hover {
+	background: rgb(210, 225, 255);
+	color: rgb(42, 120, 192);
+} 

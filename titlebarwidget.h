@@ -17,26 +17,25 @@ class TitleBarWidget : public QWidget
 public:
 	explicit TitleBarWidget(QWidget *parent);
 	~TitleBarWidget();
+	
+private:
+	void paintEvent(QPaintEvent* event);
 
 signals:
 	void minimizeClicked();
 	void closeClicked();
-	void aboutClicked();
 	void skinChanged();
 
 private:
 	
 	QHBoxLayout* m_topLayout;
-	QHBoxLayout* m_botLayout;
 	QHBoxLayout* m_mainLayout;
 
-	CustomPushButton* m_skinBtn;
 	CustomPushButton* m_miniBtn;
 	CustomPushButton* m_closeBtn;
 
 	QLabel* m_logo;
 	QPushButton* m_about;
-
 };
 
 #endif // TITLEBARWIDGET_H

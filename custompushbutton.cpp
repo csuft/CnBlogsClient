@@ -28,6 +28,7 @@ void CustomPushButton::paintEvent(QPaintEvent *event)
 	// draw the button background
 	painter.drawPixmap(rect(), QPixmap(pixmapPath));  
 
+
 }
 
 void CustomPushButton::mousePressEvent(QMouseEvent *event)

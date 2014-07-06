@@ -4,7 +4,7 @@
 #include <QWidget>
 /*
  * When new essays published, we sent notifications to users
- * by prompt a window on the left bottom edge.
+ * by prompt a window on the right bottom edge.
  */
 class PromptWindow : public QWidget
 {

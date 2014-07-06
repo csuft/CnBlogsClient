@@ -16,9 +16,9 @@ void SystemTray::createTopWidget()
 {
 	m_topWidget = new QWidget();
 	m_topWidgetAction = new QWidgetAction(m_trayMenu);
-	m_topLabel = new QLabel(QStringLiteral("HUST Information Security Lab"));
+	m_topLabel = new QLabel(QStringLiteral("博客园PC客户端"));
 	m_topLabel->setObjectName(QStringLiteral("WhiteLabel"));
-	m_homeBtn = new QLabel(QStringLiteral("Visit"));
+	m_homeBtn = new QLabel(QStringLiteral("访问主页"));
 	m_homeBtn->setCursor(Qt::PointingHandCursor);
 	m_homeBtn->setObjectName(QStringLiteral("WhiteLabel"));
 

@@ -5,7 +5,7 @@ CustomToolButton::CustomToolButton(const QString& path, QWidget *parent)
 {
 	// Get the widget's palette, we do have to change the color of the tool button.
 	QPalette text_palette = palette();
-	text_palette.setColor(QPalette::ButtonText, QColor(230, 230, 230));
+	text_palette.setColor(QPalette::ButtonText, QColor(202, 221, 254));
 	setPalette(text_palette);
 	// set the style of QToolButton.
 	setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
@@ -19,8 +19,7 @@ CustomToolButton::CustomToolButton(const QString& path, QWidget *parent)
 	QPixmap background(m_filePath);
 	setIcon(background);
 	setIconSize(background.size());
-	setFixedSize(background.width()+25, background.height()+25);
-
+	setFixedSize(100, 60);
 	setAutoRaise(true);
 	m_mousePressed = false;
 	m_mouseHover = false;
@@ -30,18 +29,7 @@ CustomToolButton::CustomToolButton(const QString& path, QWidget *parent)
  */
 void CustomToolButton::doPaintStuff(int topColor, int centerColor, int bottomColor)
 {
-	QPainter painter(this);
-	QPen p(Qt::NoBrush, 1);
-	painter.setPen(p);
-	// create linear gradient brush to draw the widget
-	QLinearGradient linear(rect().topLeft(), rect().bottomLeft());
-	linear.setColorAt(0, QColor(230, 230, 230, topColor));
-	linear.setColorAt(0.5, QColor(230, 230, 230, centerColor));
-	linear.setColorAt(1, QColor(230, 230, 230, bottomColor));
 
-	// paint the widget.
-	painter.setBrush(linear);
-	painter.drawRect(rect());
 }
 
 void CustomToolButton::setButtonPressed(bool isPressed)

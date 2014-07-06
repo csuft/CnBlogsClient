@@ -1,13 +1,14 @@
 <RCC>
     <qresource prefix="/syspic">
-        <file alias="close_highlight">Resources/images/btn_close_highlight.png</file>
-        <file alias="close_normal">Resources/images/btn_close_normal.png</file>
-        <file alias="mini_highlight">Resources/images/btn_mini_highlight.png</file>
-        <file alias="mini_normal">Resources/images/btn_mini_normal.png</file>
         <file alias="logo">Resources/images/logo.png</file>
         <file alias="trayicon">Resources/images/trayIcon.png</file>
-        <file alias="skin_normal">Resources/images/btn_Skin_down.png</file>
-        <file alias="skin_highlight">Resources/images/SkinIcon.png</file>
+        <file alias="background">Resources/images/background.png</file>
+        <file alias="close">Resources/images/close.png</file>
+        <file alias="close_hover">Resources/images/close_hover.png</file>
+        <file alias="close_pressed">Resources/images/close_pressed.png</file>
+        <file alias="mini">Resources/images/min.png</file>
+        <file alias="mini_hover">Resources/images/min_hover.png</file>
+        <file alias="mini_pressed">Resources/images/min_pressed.png</file>
     </qresource>
     <qresource prefix="/audio">
         <file alias="notification">Resources/audio/Global.wav</file>
@@ -25,6 +26,7 @@
         <file alias="setting">Resources/images/hammer.png</file>
         <file alias="about">Resources/images/info.png</file>
         <file alias="recommend">Resources/images/messenger.png</file>
+        <file alias="login">Resources/images/login.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="mainframe">mainframe.qss</file>

@@ -1,4 +1,4 @@
-#refresh, #login, #about {
+﻿#refresh, #login, #about {
 	background: transparent;
 	width: 90px;
 	height: 35;
@@ -24,14 +24,25 @@
 	border: 1px solid rgb(123, 129, 188);
 }
 
+#versionLabel {
+	color: blue;
+	font-size: 12px;
+}
+
+#zoomBtn {
+	background: transparent; 
+	border: none; 
+	padding: 0px;
+}
+
+#zoomBtn:hover {
+	background: rgb(204, 223, 255);
+}
+
 CustomToolButton {
 	background: transparent;
 	font-size: 12px;
 	font-family: sans-serif;
-}
-
-CustomToolButton:hover {
-	border: 1px solid rgb(123, 129, 188);
 }
 
 QListWidget {

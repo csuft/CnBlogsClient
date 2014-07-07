@@ -22,15 +22,13 @@ public:
 private:
 	CustomToolButton(const CustomToolButton& obj);
 	CustomToolButton& operator=(const CustomToolButton& obj);
+
 protected:
-	void enterEvent(QEvent *);
-	void leaveEvent(QEvent *);
 	void paintEvent(QPaintEvent *event);
 	void mousePressEvent(QMouseEvent *event);
-	void doPaintStuff(int topColor, int centerColor, int bottomColor);
+
 private:
 	bool m_mousePressed;
-	bool m_mouseHover;
 	QString m_filePath;
 };
 

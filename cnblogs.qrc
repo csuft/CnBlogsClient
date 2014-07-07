@@ -27,6 +27,8 @@
         <file alias="about">Resources/images/info.png</file>
         <file alias="recommend">Resources/images/messenger.png</file>
         <file alias="login">Resources/images/login.png</file>
+        <file alias="down">Resources/images/down.png</file>
+        <file alias="up">Resources/images/up.png</file>
     </qresource>
     <qresource prefix="/style">
         <file alias="mainframe">mainframe.qss</file>

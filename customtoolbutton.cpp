@@ -15,6 +15,7 @@ CustomToolButton::CustomToolButton(const QString& path, QWidget *parent)
 	QFont text_font = const_cast<QFont&>(font());
 	text_font.setBold(true);
 	setFont(text_font);
+	setCursor(Qt::PointingHandCursor);
 	// set the fixed size for tool buttons.
 	QPixmap background(m_filePath);
 	setIcon(background);
@@ -22,13 +23,6 @@ CustomToolButton::CustomToolButton(const QString& path, QWidget *parent)
 	setFixedSize(100, 60);
 	setAutoRaise(true);
 	m_mousePressed = false;
-	m_mouseHover = false;
-}
-/*
- * Arguments topColor, centerColor, bottomColor are alpha values for QColor.
- */
-void CustomToolButton::doPaintStuff(int topColor, int centerColor, int bottomColor)
-{
 
 }
 
@@ -38,31 +32,17 @@ void CustomToolButton::setButtonPressed(bool isPressed)
 	update();
 }
 
-void CustomToolButton::enterEvent(QEvent *)
-{
-	m_mouseHover = true;
-	update();
-}
-
-void CustomToolButton::leaveEvent(QEvent *)
-{
-	m_mouseHover = false;
-	update();
-}
-
 void CustomToolButton::paintEvent(QPaintEvent *event)
 {
-	if (m_mouseHover)
+	if (m_mousePressed)
 	{
-		doPaintStuff(0, 100, 150);
+		setStyleSheet("border: 1px solid rgb(123, 129, 188); color: blue;");
 	}
 	else
 	{
-		if (m_mousePressed)
-		{
-			doPaintStuff(0, 100, 150);
-		}
+		setStyleSheet("border: none; color: rgb(202, 221, 254);");
 	}
+
 	QToolButton::paintEvent(event);
 }
 

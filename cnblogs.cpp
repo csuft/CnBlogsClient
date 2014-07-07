@@ -6,6 +6,7 @@ cnblogs::cnblogs(QWidget *parent)
 {
 	setFixedSize(1024, 750);
 	setWindowIcon(QIcon(":/syspic/trayicon"));
+	flag = false;
 
 	m_mainLayout = new QVBoxLayout(this);
 	m_topLayout = new QHBoxLayout(this);
@@ -62,10 +63,24 @@ cnblogs::cnblogs(QWidget *parent)
 	// right layout
 	m_listWidget = new QListWidget(this);
 	m_listWidget->setItemDelegate(new NoFocusDelegate());
-	m_verinfo = new QLabel(this);
+	
+	QWidget* webContainer = new QWidget(this);
+	m_webView = new QWebView(webContainer);
+	m_webView->load(QUrl("http://www.baidu.com"));
+	m_webView->setFixedWidth(880);
+	m_zoomBtn = new QPushButton(this);
+	m_zoomBtn->setIcon(QIcon(":/panelbutton/up"));
+	m_zoomBtn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	m_zoomBtn->setFixedHeight(7);
+	m_zoomBtn->setFocusPolicy(Qt::NoFocus);
+	m_zoomBtn->setObjectName("zoomBtn");
+	m_verinfo = new QLabel(QStringLiteral("启动时间: ") + QDateTime::currentDateTime().toString("yyyy-MM-d H:m:ss AP"), this);
+	m_verinfo->setObjectName("versionLabel");
 	m_rightLayout->addWidget(m_listWidget, 1);
+	m_rightLayout->addWidget(m_zoomBtn);
+	m_rightLayout->addWidget(webContainer, 1);
 	m_rightLayout->addWidget(m_verinfo, 0, Qt::AlignRight);
-	m_rightLayout->setSpacing(5);
+	m_rightLayout->setSpacing(0);
 	m_rightLayout->setContentsMargins(0, 0, 0, 0);
 
 	// bottom layout
@@ -88,9 +103,13 @@ cnblogs::cnblogs(QWidget *parent)
 	m_systemtray = new SystemTray(this);
 	m_systemtray->show();
 
+	// click the first tab 
+	onToolBtnClicked(QString::number(0));
+
 	connect(sigMapper, SIGNAL(mapped(const QString&)), this, SLOT(onToolBtnClicked(const QString&)));
 	connect(m_titleBar, SIGNAL(minimizeClicked()), this, SLOT(showMinimized()));
 	connect(m_titleBar, SIGNAL(closeClicked()), this, SLOT(close()));
+	connect(m_zoomBtn, SIGNAL(clicked()), this, SLOT(onZoomClicked()));
 }
 
 cnblogs::~cnblogs()
@@ -99,9 +118,17 @@ cnblogs::~cnblogs()
 }
 
 
-void cnblogs::onToolBtnClicked(const QString&)
+void cnblogs::onToolBtnClicked(const QString& obj)
 {
+	int index = obj.toInt();
 
+	for (int i = 0; i < m_toolBtnList.count(); ++i)
+	{
+		CustomToolButton* tmpBtn = m_toolBtnList.at(i);
+		// normalize all tool buttons except the one the user clicked.
+		tmpBtn->setButtonPressed(i==index);
+	}
+	changePage(index);
 
 }
 /*
@@ -124,3 +151,24 @@ void cnblogs::setLoginTips()
 
 }
 
+void cnblogs::changePage(int index)
+{
+	
+}
+
+void cnblogs::onZoomClicked()
+{
+	if (flag)
+	{
+		flag = false;
+		m_zoomBtn->setIcon(QIcon(":/panelbutton/up"));
+		m_listWidget->setVisible(true);
+	}
+	else
+	{
+		flag = true;
+		m_zoomBtn->setIcon(QIcon(":/panelbutton/down"));
+		m_listWidget->setVisible(false);
+	}
+
+}

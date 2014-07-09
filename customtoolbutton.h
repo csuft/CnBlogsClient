@@ -9,6 +9,7 @@
 #include <QPixmap>
 #include <QLinearGradient>
 #include <QPalette>
+#include <QToolTip>
 
 class CustomToolButton : public QToolButton
 {
@@ -26,6 +27,7 @@ private:
 protected:
 	void paintEvent(QPaintEvent *event);
 	void mousePressEvent(QMouseEvent *event);
+	bool event(QEvent* event);
 
 private:
 	bool m_mousePressed;

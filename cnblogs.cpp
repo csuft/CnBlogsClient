@@ -49,6 +49,7 @@ cnblogs::cnblogs(QWidget *parent)
 	m_openWithIE = new QPushButton(QIcon(":/panelbutton/browser"), QStringLiteral("打开浏览器"), this);
 	m_openWithIE->setObjectName("open");
 	m_loginBtn = new QPushButton(QIcon(":/panelbutton/login"), QStringLiteral("立即登录"), this);
+	m_loginBtn->setToolTip(QStringLiteral("用博客园账户登录"));
 	m_loginBtn->setObjectName("login");
 	m_about = new QPushButton(QIcon(":/panelbutton/about"), QStringLiteral("关于"), this);
 	m_about->setObjectName("about");

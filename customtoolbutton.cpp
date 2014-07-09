@@ -53,3 +53,16 @@ void CustomToolButton::mousePressEvent(QMouseEvent *event)
 		emit clicked();
 	}
 }
+/*
+ * To show tool tips of tool buttons when mouse hovers
+ */
+bool CustomToolButton::event(QEvent* event)
+{
+	if (event->type() == QEvent::ToolTip)
+	{
+		QHelpEvent* e = static_cast<QHelpEvent*>(event);
+		QToolTip::showText(e->globalPos(), this->text());
+		return true;
+	}
+	return QWidget::event(event);
+}

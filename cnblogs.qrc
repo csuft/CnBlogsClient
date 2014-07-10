@@ -9,6 +9,7 @@
         <file alias="mini">Resources/images/min.png</file>
         <file alias="mini_hover">Resources/images/min_hover.png</file>
         <file alias="mini_pressed">Resources/images/min_pressed.png</file>
+        <file alias="zoomBg">Resources/images/zoomBackground.png</file>
     </qresource>
     <qresource prefix="/audio">
         <file alias="notification">Resources/audio/Global.wav</file>

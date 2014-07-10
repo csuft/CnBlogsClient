@@ -75,7 +75,9 @@ cnblogs::cnblogs(QWidget *parent)
 	m_zoomBtn->setFixedHeight(7);
 	m_zoomBtn->setFocusPolicy(Qt::NoFocus);
 	m_zoomBtn->setObjectName("zoomBtn");
-	m_verinfo = new QLabel(QStringLiteral("启动时间: ") + QDateTime::currentDateTime().toString("yyyy-MM-d H:m:ss AP"), this);
+	//m_verinfo = new QLabel(QStringLiteral("启动时间: ") + QDateTime::currentDateTime().toString("yyyy-MM-d H:m:ss AP"), this);
+	m_verinfo = new QLabel(QStringLiteral("<a href='http://www.cnblogs.com/csuftzzk'>打开博客园</a>"), this);
+	m_verinfo->setOpenExternalLinks(true);
 	m_verinfo->setObjectName("versionLabel");
 	m_rightLayout->addWidget(m_listWidget, 1);
 	m_rightLayout->addWidget(m_zoomBtn);

@@ -1,5 +1,4 @@
 ﻿#include "cnblogs.h"
-#include <QIcon>
 
 cnblogs::cnblogs(QWidget *parent)
 	: ShadowWindow(parent)
@@ -67,8 +66,10 @@ cnblogs::cnblogs(QWidget *parent)
 	m_webView = new QWebView(webContainer);
 	m_webView->load(QUrl("http://www.baidu.com"));
 	m_webView->setFixedWidth(880);
+	m_webView->setFixedHeight(545);
 	m_zoomBtn = new QPushButton(this);
 	m_zoomBtn->setIcon(QIcon(":/panelbutton/up"));
+	m_zoomBtn->setCursor(Qt::PointingHandCursor);
 	m_zoomBtn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	m_zoomBtn->setFixedHeight(7);
 	m_zoomBtn->setFocusPolicy(Qt::NoFocus);

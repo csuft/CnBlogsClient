@@ -33,9 +33,6 @@
 	background: transparent; 
 	border: none; 
 	padding: 0px;
-}
-
-#zoomBtn:hover {
 	background: url(:/syspic/zoomBg);
 }
 

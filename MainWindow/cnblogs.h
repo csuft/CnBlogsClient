@@ -11,14 +11,20 @@
 #include <QPushButton>
 #include <QMessageBox>
 #include <QTimer>
+#include <QStackedWidget>
 #include <QDateTime>
 #include <QtWebKitWidgets/QWebView>
-#include "shadowwindow.h"
-#include "systemtray.h"
-#include "customtoolbutton.h"
-#include "nofocusdelegate.h"
-#include "titlebarwidget.h"
+
+#include "BaseCtrl/shadowwindow.h"
+#include "BaseCtrl/systemtray.h"
+#include "BaseCtrl/customtoolbutton.h"
+#include "BaseCtrl/nofocusdelegate.h"
+#include "BaseCtrl/titlebarwidget.h"
+#include "BaseCtrl/beforeclosingwidget.h"
+#include "BaseCtrl/settingswidget.h"
+
 #include "promptwindow.h"
+#include "cstackedwidget.h"
 
 class cnblogs : public ShadowWindow
 {
@@ -36,9 +42,12 @@ private:
 	void restoreSettings();
 	void saveSettings();
 	void setLoginTips();
+
+signals:
 	void changePage(int index);
 
 private:
+	// main window elements
 	TitleBarWidget* m_titleBar;
 	QWidget* m_centralWidget;
 
@@ -52,7 +61,7 @@ private:
 	QPushButton* m_openWithIE;
 	QPushButton* m_about;
 	QPushButton* m_loginBtn;
-	QListWidget* m_listWidget;
+	CStackedWidget* m_stackedWidget;
 	QWebView* m_webView;
 	QPushButton* m_zoomBtn;
 	QLabel* m_verinfo;

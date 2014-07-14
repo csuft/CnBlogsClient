@@ -62,9 +62,7 @@ cnblogs::cnblogs(QWidget *parent)
 	m_topLayout->setContentsMargins(5, 0, 5, 0);
 
 	// right layout
-	m_listWidget = new QListWidget(this);
-	m_listWidget->setItemDelegate(new NoFocusDelegate());
-	
+	m_stackedWidget = new CStackedWidget(this);
 	QWidget* webContainer = new QWidget(this);
 	m_webView = new QWebView(webContainer);
 	m_webView->load(QUrl("http://www.baidu.com"));
@@ -79,7 +77,7 @@ cnblogs::cnblogs(QWidget *parent)
 	m_verinfo = new QLabel(QStringLiteral("<a href='http://www.cnblogs.com/csuftzzk'>打开博客园</a>"), this);
 	m_verinfo->setOpenExternalLinks(true);
 	m_verinfo->setObjectName("versionLabel");
-	m_rightLayout->addWidget(m_listWidget, 1);
+	m_rightLayout->addWidget(m_stackedWidget, 1);
 	m_rightLayout->addWidget(m_zoomBtn);
 	m_rightLayout->addWidget(webContainer, 1);
 	m_rightLayout->addWidget(m_verinfo, 0, Qt::AlignRight);
@@ -113,6 +111,7 @@ cnblogs::cnblogs(QWidget *parent)
 	connect(m_titleBar, SIGNAL(minimizeClicked()), this, SLOT(showMinimized()));
 	connect(m_titleBar, SIGNAL(closeClicked()), this, SLOT(close()));
 	connect(m_zoomBtn, SIGNAL(clicked()), this, SLOT(onZoomClicked()));
+	connect(this, SIGNAL(changePage(int)), m_stackedWidget, SLOT(onWidgetsChoosed(int)));
 }
 
 cnblogs::~cnblogs()
@@ -131,7 +130,17 @@ void cnblogs::onToolBtnClicked(const QString& obj)
 		// normalize all tool buttons except the one the user clicked.
 		tmpBtn->setButtonPressed(i==index);
 	}
-	changePage(index);
+	// While switching diefferent widgets for other tool buttons, 
+	// we show a dialog for the settings button.
+	if (index < 8)
+	{
+		emit changePage(index);
+	}
+	else
+	{
+		SettingsWidget settings;
+		settings.exec();
+	}
 
 }
 /*
@@ -154,24 +163,19 @@ void cnblogs::setLoginTips()
 
 }
 
-void cnblogs::changePage(int index)
-{
-	
-}
-
 void cnblogs::onZoomClicked()
 {
 	if (flag)
 	{
 		flag = false;
 		m_zoomBtn->setIcon(QIcon(":/panelbutton/up"));
-		m_listWidget->setVisible(true);
+		m_stackedWidget->setVisible(true);
 	}
 	else
 	{
 		flag = true;
 		m_zoomBtn->setIcon(QIcon(":/panelbutton/down"));
-		m_listWidget->setVisible(false);
+		m_stackedWidget->setVisible(false);
 	}
 
 }

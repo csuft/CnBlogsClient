@@ -5,7 +5,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
-#include "custompushbutton.h"
+#include "BaseCtrl/custompushbutton.h"
 /*
  * The title bar widget includes system buttons, window title and a static text.
  * 

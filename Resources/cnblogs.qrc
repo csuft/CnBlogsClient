@@ -1,0 +1,35 @@
+<RCC>
+    <qresource prefix="/syspic">
+        <file alias="logo">images/logo.png</file>
+        <file alias="background">images/background.png</file>
+        <file alias="close">images/close.png</file>
+        <file alias="close_hover">images/close_hover.png</file>
+        <file alias="close_pressed">images/close_pressed.png</file>
+        <file alias="mini">images/min.png</file>
+        <file alias="mini_hover">images/min_hover.png</file>
+        <file alias="mini_pressed">images/min_pressed.png</file>
+        <file alias="trayicon">images/trayIcon.png</file>
+        <file alias="zoomBg">images/zoomBackground.png</file>
+    </qresource>
+    <qresource prefix="/audio"/>
+    <qresource prefix="/panelbutton">
+        <file alias="alternative">images/alternative.png</file>
+        <file alias="down">images/down.png</file>
+        <file alias="up">images/up.png</file>
+        <file alias="login">images/login.png</file>
+        <file alias="recommend">images/messenger.png</file>
+        <file alias="myblog">images/blog.png</file>
+        <file alias="about">images/info.png</file>
+        <file alias="setting">images/hammer.png</file>
+        <file alias="refresh">images/refresh.png</file>
+        <file alias="essence">images/presure.png</file>
+        <file alias="news">images/news.png</file>
+        <file alias="preference">images/prefer.png</file>
+        <file alias="browser">images/IE.png</file>
+        <file alias="home">images/home.png</file>
+        <file alias="comment">images/comment.png</file>
+    </qresource>
+    <qresource prefix="/style">
+        <file alias="mainframe">mainframe.qss</file>
+    </qresource>
+</RCC>

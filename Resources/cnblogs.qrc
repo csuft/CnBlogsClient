@@ -10,6 +10,7 @@
         <file alias="mini_pressed">images/min_pressed.png</file>
         <file alias="trayicon">images/trayIcon.png</file>
         <file alias="zoomBg">images/zoomBackground.png</file>
+        <file alias="loading">images/loading.gif</file>
     </qresource>
     <qresource prefix="/audio"/>
     <qresource prefix="/panelbutton">

@@ -64,9 +64,10 @@ cnblogs::cnblogs(QWidget *parent)
 	m_stackedWidget = new CStackedWidget(this);
 	QWidget* webContainer = new QWidget(this);
 	m_webView = new QWebView(webContainer);
-	m_webView->load(QUrl("http://www.baidu.com"));
+	m_webView->load(QUrl("http://www.cnblogs.com/fangjian0423/p/3808176.html"));
 	m_webView->setFixedWidth(880);
 	m_webView->setFixedHeight(545);
+	m_webView->setZoomFactor(0.85);
 	m_zoomBtn = new QPushButton(this);
 	m_zoomBtn->setIcon(QIcon(":/panelbutton/up"));
 	m_zoomBtn->setCursor(Qt::PointingHandCursor);
@@ -74,6 +75,7 @@ cnblogs::cnblogs(QWidget *parent)
 	m_zoomBtn->setFixedHeight(7);
 	m_zoomBtn->setFocusPolicy(Qt::NoFocus);
 	m_zoomBtn->setObjectName("zoomBtn");
+	m_zoomBtn->setToolTip(QStringLiteral("收起列表"));
 	//m_verinfo = new QLabel(QStringLiteral("启动时间: ") + QDateTime::currentDateTime().toString("yyyy-MM-d H:m:ss AP"), this);
 	m_verinfo = new QLabel(QStringLiteral("<a href='http://www.cnblogs.com/csuftzzk'>打开博客园</a>"), this);
 	m_verinfo->setOpenExternalLinks(true);
@@ -171,12 +173,14 @@ void cnblogs::onZoomClicked()
 		flag = false;
 		m_zoomBtn->setIcon(QIcon(":/panelbutton/up"));
 		m_stackedWidget->setVisible(true);
+		m_zoomBtn->setToolTip(QStringLiteral("收起列表"));
 	}
 	else
 	{
 		flag = true;
 		m_zoomBtn->setIcon(QIcon(":/panelbutton/down"));
 		m_stackedWidget->setVisible(false);
+		m_zoomBtn->setToolTip(QStringLiteral("展开列表"));
 	}
 
 }

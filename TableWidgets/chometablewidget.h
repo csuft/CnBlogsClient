@@ -2,6 +2,7 @@
 #define CHOMETABLEWIDGET_H
 
 #include <QTableWidget>
+#include "BaseCtrl/loadingwidget.h"
 
 /*
  * CHomeTableWidget 存储首页博文
@@ -15,7 +16,7 @@ public:
 	~CHomeTableWidget();
 
 private:
-	
+	LoadingWidget* m_loadingWidget;
 };
 
 #endif // CHOMETABLEWIDGET_H

@@ -36,6 +36,12 @@
 	background: url(:/syspic/zoomBg);
 }
 
+#loading {
+	font-size: 12px;
+	color: rgb(202, 221, 254);
+	font-family: sans-serif;
+}
+
 CustomToolButton {
 	background: transparent;
 	font-size: 12px;

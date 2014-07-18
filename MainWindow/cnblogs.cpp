@@ -65,7 +65,7 @@ cnblogs::cnblogs(QWidget *parent)
 	m_stackedWidget = new CStackedWidget(this);
 	QWidget* webContainer = new QWidget(this);
 	m_webView = new QWebView(webContainer);
-	m_webView->load(QUrl("http://www.cnblogs.com/fangjian0423/p/3808176.html"));
+	m_webView->load(QUrl("http://www.baidu.com"));
 	m_webView->setFixedWidth(880);
 	m_webView->setFixedHeight(545);
 	m_webView->setZoomFactor(0.85);
@@ -116,10 +116,10 @@ cnblogs::cnblogs(QWidget *parent)
 	connect(m_titleBar, SIGNAL(closeClicked()), this, SLOT(close()));
 	connect(m_zoomBtn, SIGNAL(clicked()), this, SLOT(onZoomClicked()));
 	connect(this, SIGNAL(changePage(int)), m_stackedWidget, SLOT(onWidgetsChoosed(int)));
-	connect(m_refreshBtn, SIGNAL(clicked()), this, SLOT());
-	connect(m_openWithIE, SIGNAL(clicked()), this, SLOT());
-	connect(m_loginBtn, SIGNAL(clicked()), this, SLOT());
-	connect(m_about, SIGNAL(clicked()), this, SLOT());
+	connect(m_refreshBtn, SIGNAL(clicked()), this, SLOT(onRefreshClicked()));
+	connect(m_openWithIE, SIGNAL(clicked()), this, SLOT(onOpenWithIEClicked()));
+	connect(m_loginBtn, SIGNAL(clicked()), this, SLOT(onLoginClicked()));
+	connect(m_about, SIGNAL(clicked()), this, SLOT(onAboutClicked()));
 }
 
 cnblogs::~cnblogs()
@@ -198,11 +198,12 @@ void cnblogs::onOpenWithIEClicked()
 
 void cnblogs::onLoginClicked()
 {
-	LoginDialog* loginDlg = new LoginDialog(this);
+	LoginDialog* loginDlg = new LoginDialog();
 	loginDlg->exec();
 }
 
 void cnblogs::onAboutClicked()
 {
-	QMessageBox::information(this, "Tips", "Not implemented yet...");
+	AboutDialog* aboutDlg = new AboutDialog();
+	aboutDlg->exec();
 }

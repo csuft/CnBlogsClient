@@ -21,6 +21,11 @@
       <Extensions>qrc;*</Extensions>
       <ParseFiles>false</ParseFiles>
     </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TableWidgets\ccandidatetablewidget.cpp">
@@ -313,6 +318,9 @@
     <CustomBuild Include="Resources\cnblogs.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="Resources\cnblogs.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3rdParty\libcurl-7.18.0\include\curl\curl.h">
@@ -340,6 +348,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="Network\XmlParser.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_cnblogs.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

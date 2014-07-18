@@ -8,6 +8,7 @@
 #include <QFormLayout>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QMessageBox>
 
 #include "BaseCtrl/shadowwindow.h"
 #include "BaseCtrl/custompushbutton.h"
@@ -17,7 +18,7 @@ class LoginDialog : public ShadowWindow
 	Q_OBJECT
 
 public:
-	LoginDialog(QWidget *parent);
+	LoginDialog(QWidget *parent = NULL);
 	~LoginDialog();
 
 signals:
@@ -25,6 +26,7 @@ signals:
 
 private slots:
 	void onCloseClicked();
+	void onLoginClicked();
 
 protected:
 	void paintEvent(QPaintEvent* e);

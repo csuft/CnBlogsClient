@@ -6,6 +6,7 @@ cnblogs::cnblogs(QWidget *parent)
 	setFixedSize(1024, 750);
 	setWindowIcon(QIcon(":/syspic/trayicon"));
 	flag = false;
+	isLogin = false;
 
 	m_mainLayout = new QVBoxLayout(this);
 	m_topLayout = new QHBoxLayout(this);
@@ -115,6 +116,10 @@ cnblogs::cnblogs(QWidget *parent)
 	connect(m_titleBar, SIGNAL(closeClicked()), this, SLOT(close()));
 	connect(m_zoomBtn, SIGNAL(clicked()), this, SLOT(onZoomClicked()));
 	connect(this, SIGNAL(changePage(int)), m_stackedWidget, SLOT(onWidgetsChoosed(int)));
+	connect(m_refreshBtn, SIGNAL(clicked()), this, SLOT());
+	connect(m_openWithIE, SIGNAL(clicked()), this, SLOT());
+	connect(m_loginBtn, SIGNAL(clicked()), this, SLOT());
+	connect(m_about, SIGNAL(clicked()), this, SLOT());
 }
 
 cnblogs::~cnblogs()
@@ -161,11 +166,6 @@ void cnblogs::saveSettings()
 
 }
 
-void cnblogs::setLoginTips()
-{
-
-}
-
 void cnblogs::onZoomClicked()
 {
 	if (flag)
@@ -183,4 +183,26 @@ void cnblogs::onZoomClicked()
 		m_zoomBtn->setToolTip(QStringLiteral("展开列表"));
 	}
 
+}
+
+void cnblogs::onRefreshClicked()
+{
+	QMessageBox::information(this, "Tips", "Not implemented yet...");
+}
+
+void cnblogs::onOpenWithIEClicked()
+{
+	QMessageBox::information(this, "Tips", "Not implemented yet...");
+
+}
+
+void cnblogs::onLoginClicked()
+{
+	LoginDialog* loginDlg = new LoginDialog(this);
+	loginDlg->exec();
+}
+
+void cnblogs::onAboutClicked()
+{
+	QMessageBox::information(this, "Tips", "Not implemented yet...");
 }

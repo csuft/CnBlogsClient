@@ -25,6 +25,8 @@
 
 #include "promptwindow.h"
 #include "cstackedwidget.h"
+#include "aboutdialog.h"
+#include "logindialog.h"
 
 class cnblogs : public ShadowWindow
 {
@@ -37,11 +39,14 @@ public:
 private slots:
 	void onToolBtnClicked(const QString&);
 	void onZoomClicked();
+	void onRefreshClicked();
+	void onOpenWithIEClicked();
+	void onLoginClicked();
+	void onAboutClicked();
 
 private:
 	void restoreSettings();
 	void saveSettings();
-	void setLoginTips();
 
 signals:
 	void changePage(int index);
@@ -72,6 +77,7 @@ private:
 
 	SystemTray* m_systemtray;
 	bool flag;
+	bool isLogin;
 };
 
 #endif // CNBLOGS_H

@@ -1,168 +1,231 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;cxx;c;def</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h</Extensions>
-    </Filter>
-    <Filter Include="Form Files">
-      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
-      <Extensions>ui</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
-      <Extensions>qrc;*</Extensions>
-      <ParseFiles>false</ParseFiles>
-    </Filter>
     <Filter Include="Generated Files">
       <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{62c0af3e-c872-4bf0-bbc7-2f4fab074e95}</UniqueIdentifier>
+      <UniqueIdentifier>{c5a714ad-ed5c-407d-a24c-ac78cb72bb02}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{473db6d0-cf30-4511-99a4-5e44330d0900}</UniqueIdentifier>
+      <UniqueIdentifier>{19757d3a-57c4-494e-bcc2-f47db4e632c7}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GeneratedFiles\Release\moc_cnblogs.cpp">
-      <Filter>Generated Files\Release</Filter>
+    <ClCompile Include="TableWidgets\ccandidatetablewidget.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_shadowwindow.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_custompushbutton.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_customtoolbutton.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_nofocusdelegate.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_systemtray.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_titlebarwidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_promptwindow.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseCtrl\nofocusdelegate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseCtrl\shadowwindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseCtrl\systemtray.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseCtrl\titlebarwidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseCtrl\customtoolbutton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseCtrl\custompushbutton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainWindow\promptwindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainWindow\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainWindow\cnblogs.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ccandidatetablewidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_ccandidatetablewidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="TableWidgets\ccandidatetablewidget.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="TableWidgets\ccommentstablewidget.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_chometablewidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_cpicktablewidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_cnewstablewidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_cmyblogtablewidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_crecommendtablewidget.cpp">
-      <Filter>Generated Files\Release</Filter>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ccommentstablewidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_ccommentstablewidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_cprefertablewidget.cpp">
+    <ClCompile Include="TableWidgets\chometablewidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_chometablewidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_chometablewidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="TableWidgets\cmyblogtablewidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_cmyblogtablewidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_cmyblogtablewidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="TableWidgets\cnewstablewidget.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_cnewstablewidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_cnewstablewidget.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="TableWidgets\cpicktablewidget.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_cpicktablewidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_cpicktablewidget.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="TableWidgets\cprefertablewidget.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_cprefertablewidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_cprefertablewidget.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="TableWidgets\crecommendtablewidget.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="TableWidgets\ccommentstablewidget.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GeneratedFiles\Debug\moc_crecommendtablewidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="TableWidgets\chometablewidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TableWidgets\cmyblogtablewidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_settingswidget.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_crecommendtablewidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="BaseCtrl\settingswidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_beforeclosingwidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseCtrl\beforeclosingwidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_cstackedwidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="MainWindow\cstackedwidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Network\HttpClient.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Network\XmlParser.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GeneratedFiles\Debug\moc_loadingwidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_loadingwidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_aboutdialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_aboutdialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCtrl\beforeclosingwidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_beforeclosingwidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_beforeclosingwidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCtrl\custompushbutton.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_custompushbutton.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_custompushbutton.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCtrl\customtoolbutton.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_customtoolbutton.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_customtoolbutton.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
     <ClCompile Include="BaseCtrl\loadingwidget.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCtrl\nofocusdelegate.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_nofocusdelegate.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_nofocusdelegate.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCtrl\settingswidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_settingswidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_settingswidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCtrl\shadowwindow.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_shadowwindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_shadowwindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCtrl\systemtray.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_systemtray.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_systemtray.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCtrl\titlebarwidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_titlebarwidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_titlebarwidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow\aboutdialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow\cnblogs.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_cnblogs.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_cnblogs.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow\cstackedwidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_cstackedwidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_cstackedwidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow\logindialog.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_logindialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_logindialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow\main.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindow\promptwindow.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_promptwindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_promptwindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\HttpClient.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_HttpClient.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -170,107 +233,218 @@
     <ClCompile Include="GeneratedFiles\Release\moc_HttpClient.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Network\XmlParser.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_cnblogs.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="BaseCtrl\nofocusdelegate.h">
-      <Filter>Header Files</Filter>
+    <CustomBuild Include="TableWidgets\ccandidatetablewidget.h">
+      <Filter>Generated Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="BaseCtrl\shadowwindow.h">
-      <Filter>Header Files</Filter>
+    <CustomBuild Include="TableWidgets\ccommentstablewidget.h">
+      <Filter>Generated Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="BaseCtrl\systemtray.h">
-      <Filter>Header Files</Filter>
+    <CustomBuild Include="TableWidgets\chometablewidget.h">
+      <Filter>Generated Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="BaseCtrl\titlebarwidget.h">
-      <Filter>Header Files</Filter>
+    <CustomBuild Include="TableWidgets\cmyblogtablewidget.h">
+      <Filter>Generated Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="BaseCtrl\customtoolbutton.h">
-      <Filter>Header Files</Filter>
+    <CustomBuild Include="TableWidgets\cnewstablewidget.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TableWidgets\cpicktablewidget.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TableWidgets\cprefertablewidget.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TableWidgets\crecommendtablewidget.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BaseCtrl\loadingwidget.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MainWindow\aboutdialog.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BaseCtrl\beforeclosingwidget.h">
+      <Filter>Generated Files</Filter>
     </CustomBuild>
     <CustomBuild Include="BaseCtrl\custompushbutton.h">
-      <Filter>Header Files</Filter>
+      <Filter>Generated Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="MainWindow\promptwindow.h">
-      <Filter>Header Files</Filter>
+    <CustomBuild Include="BaseCtrl\customtoolbutton.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BaseCtrl\nofocusdelegate.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BaseCtrl\settingswidget.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BaseCtrl\shadowwindow.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BaseCtrl\systemtray.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BaseCtrl\titlebarwidget.h">
+      <Filter>Generated Files</Filter>
     </CustomBuild>
     <CustomBuild Include="MainWindow\cnblogs.h">
-      <Filter>Header Files</Filter>
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MainWindow\cstackedwidget.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MainWindow\logindialog.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MainWindow\promptwindow.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Network\HttpClient.h">
+      <Filter>Generated Files</Filter>
     </CustomBuild>
     <CustomBuild Include="Resources\cnblogs.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="TableWidgets\ccandidatetablewidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="TableWidgets\crecommendtablewidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="TableWidgets\cnewstablewidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="TableWidgets\cpicktablewidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="TableWidgets\cprefertablewidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="TableWidgets\cmyblogtablewidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="TableWidgets\ccommentstablewidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="TableWidgets\chometablewidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="BaseCtrl\settingswidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="BaseCtrl\beforeclosingwidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="MainWindow\cstackedwidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="BaseCtrl\loadingwidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Network\HttpClient.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\mainframe.qss">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3rdParty\libcurl-7.18.0\include\curl\curl.h">
-      <Filter>Header Files</Filter>
+      <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="3rdParty\libcurl-7.18.0\include\curl\curlver.h">
-      <Filter>Header Files</Filter>
+      <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="3rdParty\libcurl-7.18.0\include\curl\easy.h">
-      <Filter>Header Files</Filter>
+      <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="3rdParty\libcurl-7.18.0\include\curl\mprintf.h">
-      <Filter>Header Files</Filter>
+      <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="3rdParty\libcurl-7.18.0\include\curl\multi.h">
-      <Filter>Header Files</Filter>
+      <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="3rdParty\libcurl-7.18.0\include\curl\stdcheaders.h">
-      <Filter>Header Files</Filter>
+      <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="3rdParty\libcurl-7.18.0\include\curl\types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Network\XmlParser.h">
-      <Filter>Header Files</Filter>
+      <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="Network\Commons.h">
-      <Filter>Header Files</Filter>
+      <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="Network\XmlParser.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="Debug\Cnblogs.exe.intermediate.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images\logo.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\background.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\close.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\close_hover.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\close_pressed.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\min.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\min_hover.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\min_pressed.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\trayIcon.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\zoomBackground.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\loading.gif">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\read.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\unread.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\checkbox_hightlight.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\checkbox_normal.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\checkbox_tick_highlight.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\checkbox_tick_normal.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\alternative.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\down.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\up.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\login.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\messenger.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\blog.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\info.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\hammer.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\refresh.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\presure.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\news.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\prefer.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\IE.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\home.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\images\comment.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\mainframe.qss">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

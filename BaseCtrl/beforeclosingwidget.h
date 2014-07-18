@@ -3,7 +3,9 @@
 
 #include "BaseCtrl/shadowwindow.h"
 
-
+/*
+ * To make sure whether the user wants to quit or clicked unintentional.
+ */
 class BeforeClosingWidget : public ShadowWindow
 {
 	Q_OBJECT

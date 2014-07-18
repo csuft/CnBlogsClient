@@ -11,6 +11,12 @@
         <file alias="trayicon">images/trayIcon.png</file>
         <file alias="zoomBg">images/zoomBackground.png</file>
         <file alias="loading">images/loading.gif</file>
+        <file alias="read">images/read.png</file>
+        <file alias="unread">images/unread.png</file>
+        <file alias="uncheck_highlight">images/checkbox_hightlight.png</file>
+        <file alias="uncheck_normal">images/checkbox_normal.png</file>
+        <file alias="check_highlight">images/checkbox_tick_highlight.png</file>
+        <file alias="check_normal">images/checkbox_tick_normal.png</file>
     </qresource>
     <qresource prefix="/audio"/>
     <qresource prefix="/panelbutton">

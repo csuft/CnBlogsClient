@@ -244,6 +244,15 @@
     <ClCompile Include="GeneratedFiles\qrc_cnblogs.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="BaseCtrl\customitemmodel.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_customitemmodel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_customitemmodel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="TableWidgets\ccandidatetablewidget.h">
@@ -320,6 +329,9 @@
     </CustomBuild>
     <CustomBuild Include="Resources\cnblogs.ui">
       <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BaseCtrl\customitemmodel.h">
+      <Filter>Generated Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

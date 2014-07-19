@@ -1,11 +1,13 @@
 ﻿#ifndef CRECOMMENDTABLEWIDGET_H
 #define CRECOMMENDTABLEWIDGET_H
 
-#include <QTableWidget>
+#include <QTableView>
+
+#include "BaseCtrl/customitemmodel.h"
 /*
  * CRecommendTableWidget 存储推荐博客，前100名
  */
-class CRecommendTableWidget : public QTableWidget
+class CRecommendTableWidget : public QTableView
 {
 	Q_OBJECT
 

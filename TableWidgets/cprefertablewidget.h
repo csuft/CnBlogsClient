@@ -1,11 +1,13 @@
 ﻿#ifndef CPREFERTABLEWIDGET_H
 #define CPREFERTABLEWIDGET_H
 
-#include <QTableWidget>
+#include <QTableView>
+
+#include "BaseCtrl/customitemmodel.h"
 /*
  * CPreferTableWidget 存储我赞过的博文
  */
-class CPreferTableWidget : public QTableWidget
+class CPreferTableWidget : public QTableView
 {
 	Q_OBJECT
 

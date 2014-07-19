@@ -23,6 +23,18 @@ public:
 	CStackedWidget(QWidget *parent);
 	~CStackedWidget();
 
+signals:
+	// to notify the table widget update contents 
+	// when the widget is visible.
+	void updateHome();
+	void updatePicks();
+	void updateCandidates();
+	void updateNews();
+	void updateMyposts();
+	void updateRecommends();
+	void updateComments();
+	void updateVotes();
+
 private slots:
 	void onWidgetsChoosed(int index);
 

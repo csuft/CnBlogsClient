@@ -1,7 +1,7 @@
 #include "ccommentstablewidget.h"
 
 CCommentsTableWidget::CCommentsTableWidget(QWidget *parent)
-	: QTableWidget(parent)
+	: QTableView(parent)
 {
 
 }

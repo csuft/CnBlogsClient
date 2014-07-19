@@ -1,7 +1,7 @@
 #include "ccandidatetablewidget.h"
 
 CCandidateTableWidget::CCandidateTableWidget(QWidget *parent)
-	: QTableWidget(parent)
+	: QTableView(parent)
 {
 
 }

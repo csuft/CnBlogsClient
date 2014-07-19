@@ -1,7 +1,7 @@
 #include "cmyblogtablewidget.h"
 
 CMyblogTableWidget::CMyblogTableWidget(QWidget *parent)
-	: QTableWidget(parent)
+	: QTableView(parent)
 {
 
 }

@@ -18,6 +18,7 @@
         <file alias="check_highlight">images/checkbox_tick_highlight.png</file>
         <file alias="check_normal">images/checkbox_tick_normal.png</file>
         <file alias="24k">images/24K.png</file>
+        <file alias="checkmark">images/checkmark.png</file>
     </qresource>
     <qresource prefix="/audio"/>
     <qresource prefix="/panelbutton">

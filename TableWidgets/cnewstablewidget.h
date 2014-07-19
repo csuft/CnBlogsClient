@@ -1,11 +1,13 @@
 ﻿#ifndef CNEWSTABLEWIDGET_H
 #define CNEWSTABLEWIDGET_H
 
-#include <QTableWidget>
+#include <QTableView>
+
+#include "BaseCtrl/customitemmodel.h"
 /*
  * CNewsTableWidget 存储新闻列表
  */
-class CNewsTableWidget : public QTableWidget
+class CNewsTableWidget : public QTableView
 {
 	Q_OBJECT
 

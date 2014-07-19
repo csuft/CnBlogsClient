@@ -1,11 +1,14 @@
 ﻿#ifndef CCANDIDATETABLEWIDGET_H
 #define CCANDIDATETABLEWIDGET_H
 
-#include <QTableWidget>
+#include <QTableView>
+
+#include "BaseCtrl/customitemmodel.h"
+#include "BaseCtrl/loadingwidget.h"
 /*
  * CCandidateTableWidget存储候选博文
  */
-class CCandidateTableWidget : public QTableWidget
+class CCandidateTableWidget : public QTableView
 {
 	Q_OBJECT
 
@@ -14,6 +17,7 @@ public:
 	~CCandidateTableWidget();
 
 private:
+	LoadingWidget* m_loadingWidget;
 	
 };
 

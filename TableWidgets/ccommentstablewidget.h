@@ -1,11 +1,13 @@
 ﻿#ifndef CCOMMENTSTABLEWIDGET_H
 #define CCOMMENTSTABLEWIDGET_H
 
-#include <QTableWidget>
+#include <QTableView>
+
+#include "BaseCtrl/customitemmodel.h"
 /*
  * CCommentsTableWidget 存储我评论我的博文
  */
-class CCommentsTableWidget : public QTableWidget
+class CCommentsTableWidget : public QTableView
 {
 	Q_OBJECT
 

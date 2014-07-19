@@ -1,11 +1,13 @@
 ﻿#ifndef CPICKTABLEWIDGET_H
 #define CPICKTABLEWIDGET_H
 
-#include <QTableWidget>
+#include <QTableView>
+
+#include "BaseCtrl/customitemmodel.h"
 /*
  * CPickTableWidget存储精选博文
  */
-class CPickTableWidget : public QTableWidget
+class CPickTableWidget : public QTableView
 {
 	Q_OBJECT
 

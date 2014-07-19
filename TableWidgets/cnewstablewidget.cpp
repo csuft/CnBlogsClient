@@ -1,7 +1,7 @@
 #include "cnewstablewidget.h"
 
 CNewsTableWidget::CNewsTableWidget(QWidget *parent)
-	: QTableWidget(parent)
+	: QTableView(parent)
 {
 
 }

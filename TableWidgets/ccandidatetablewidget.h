@@ -2,7 +2,9 @@
 #define CCANDIDATETABLEWIDGET_H
 
 #include <QTableView>
+#include <QHeaderView>
 
+#include "BaseCtrl/nofocusdelegate.h"
 #include "BaseCtrl/customitemmodel.h"
 #include "BaseCtrl/loadingwidget.h"
 /*
@@ -18,7 +20,7 @@ public:
 
 private:
 	LoadingWidget* m_loadingWidget;
-	
+	CustomItemModel* m_model;
 };
 
 #endif // CCANDIDATETABLEWIDGET_H

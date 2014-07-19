@@ -2,8 +2,11 @@
 #define CRECOMMENDTABLEWIDGET_H
 
 #include <QTableView>
+#include <QHeaderView>
 
+#include "BaseCtrl/nofocusdelegate.h"
 #include "BaseCtrl/customitemmodel.h"
+#include "BaseCtrl/loadingwidget.h"
 /*
  * CRecommendTableWidget 存储推荐博客，前100名
  */
@@ -16,7 +19,7 @@ public:
 	~CRecommendTableWidget();
 
 private:
-	
+	CustomItemModel* m_model;
 };
 
 #endif // CRECOMMENDTABLEWIDGET_H

@@ -2,8 +2,11 @@
 #define CCOMMENTSTABLEWIDGET_H
 
 #include <QTableView>
+#include <QHeaderView>
 
+#include "BaseCtrl/nofocusdelegate.h"
 #include "BaseCtrl/customitemmodel.h"
+#include "BaseCtrl/loadingwidget.h"
 /*
  * CCommentsTableWidget 存储我评论我的博文
  */
@@ -16,7 +19,7 @@ public:
 	~CCommentsTableWidget();
 
 private:
-	
+	CustomItemModel* m_model;
 };
 
 #endif // CCOMMENTSTABLEWIDGET_H

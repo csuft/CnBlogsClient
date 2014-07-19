@@ -2,8 +2,11 @@
 #define CMYBLOGTABLEWIDGET_H
 
 #include <QTableView>
+#include <QHeaderView>
 
+#include "BaseCtrl/nofocusdelegate.h"
 #include "BaseCtrl/customitemmodel.h"
+#include "BaseCtrl/loadingwidget.h"
 /*
  * CMyblogTableWidget 存储我的所有的博文
  */
@@ -16,7 +19,7 @@ public:
 	~CMyblogTableWidget();
 
 private:
-	
+	CustomItemModel* m_model;
 };
 
 #endif // CMYBLOGTABLEWIDGET_H

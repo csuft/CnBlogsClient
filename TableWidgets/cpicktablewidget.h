@@ -2,8 +2,11 @@
 #define CPICKTABLEWIDGET_H
 
 #include <QTableView>
+#include <QHeaderView>
 
+#include "BaseCtrl/nofocusdelegate.h"
 #include "BaseCtrl/customitemmodel.h"
+#include "BaseCtrl/loadingwidget.h"
 /*
  * CPickTableWidget存储精选博文
  */
@@ -16,7 +19,7 @@ public:
 	~CPickTableWidget();
 
 private:
-	
+	CustomItemModel* m_model;
 };
 
 #endif // CPICKTABLEWIDGET_H

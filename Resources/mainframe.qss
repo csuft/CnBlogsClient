@@ -73,7 +73,8 @@ LoginDialog QLineEdit:hover{
 }
 
 #loginBtn:hover {
-	border: 1px solid  rgb(236, 130, 93);
+	border: 1px solid blue;
+
 }
 
 CustomToolButton {
@@ -82,7 +83,7 @@ CustomToolButton {
 	font-family: sans-serif;
 }
 
-QListWidget {
+QTableView {
 	border: 1px solid rgb(123, 129, 188);
 }
 

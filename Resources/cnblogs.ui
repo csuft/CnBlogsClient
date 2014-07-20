@@ -1,25 +1,26 @@
-<UI version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>cnblogsClass</class>
- <widget class="QWidget" name="cnblogsClass" >
-  <property name="objectName" >
-   <string notr="true">cnblogsClass</string>
-  </property>
-  <property name="geometry" >
+ <widget class="QWidget" name="cnblogsClass">
+  <property name="geometry">
    <rect>
-	<x>0</x>
-	<y>0</y>
-	<width>600</width>
-	<height>400</height>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>cnblogs</string>
+  <property name="windowTitle">
+   <string>博客园PC客户端</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="cnblogs.qrc">
+    <normaloff>:/syspic/trayicon</normaloff>:/syspic/trayicon</iconset>
   </property>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources>
-   <include location="cnblogs.qrc"/>
+  <include location="cnblogs.qrc"/>
  </resources>
  <connections/>
-</UI>
+</ui>

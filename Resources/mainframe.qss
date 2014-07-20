@@ -57,7 +57,7 @@
 }
 
 LoginDialog QLineEdit{
-	background: transparent;
+	background: white;
 	border: 1px solid  rgb(146, 163, 217);
 	border-radius: 3px;
 }
@@ -128,3 +128,62 @@ QPushButton#TrayButton:hover {
 	background: rgb(210, 225, 255);
 	color: rgb(42, 120, 192);
 } 
+
+QHeaderView::section {
+	background-color: rgb(206, 226, 255);
+	color: white;
+	padding-left: 4px;
+	border: none;
+	min-height: 25px;
+	font-size: 10px;
+}
+
+QScrollBar:horizontal {
+	background: transparent;
+	height: 7px;
+}
+
+QScrollBar::handle:horizontal {
+	background: rgb(157, 178, 241);
+	border-radius: 2px;
+}
+
+QScrollBar::add-line:horizontal {
+	border: nonde;
+	background: transparent;
+}
+
+QScrollBar::sub-line:horizontal {
+	border: none;
+	background: transparent;
+}
+
+QScrollBar:vertical {
+	background: transparent;
+	width: 7px;
+}
+
+QScrollBar::handle:vertical {
+	background: rgb(157, 178, 241);
+	border-radius: 2px;
+}
+
+QScrollBar::add-line:vertical {
+	border: none;
+	background: transparent;
+}
+
+QScrollBar::sub-line:vertical {
+	border: none;
+	background: transparent;
+}
+
+QScrollBar::add-page:horizontal, QScrollBar::add-page:vertical {
+	border: none;
+	background: transparent;
+}
+
+QScrollBar::sub-page:horizontal, QScrollBar::sub-page:vertical {
+	border: none;
+	background: transparent;
+}

@@ -23,6 +23,7 @@ CRecommendTableWidget::CRecommendTableWidget(QWidget *parent)
 	setSelectionMode(QAbstractItemView::SingleSelection);
 	setEditTriggers(QAbstractItemView::NoEditTriggers);
 	setShowGrid(false);
+	horizontalHeader()->setStretchLastSection(true);
 	horizontalHeader()->setHighlightSections(false);
 	setItemDelegate(new NoFocusDelegate());
 	verticalHeader()->hide();

@@ -19,3 +19,4 @@ bool XmlParser::getLoginResult(const char* fileName)
 {
 
 }
+

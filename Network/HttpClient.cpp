@@ -1,7 +1,6 @@
 ﻿#include "HttpClient.h"
 
-
-HttpClient::HttpClient(void): m_header(NULL)
+HttpClient::HttpClient(void): m_header(NULL), m_pages(1)
 {
 	curl_global_init(CURL_GLOBAL_ALL);
 	m_curl = curl_easy_init();
@@ -32,7 +31,7 @@ bool HttpClient::initialConnection(int usePost,
 								   const char* refer, 
 								   FILE* file)
 {
-	if (m_curl == NULL || url == NULL || host == NULL || refer == NULL)
+	if (m_curl == NULL || url == NULL || host == NULL || file == NULL)
 	{
 		return false;
 	}
@@ -68,26 +67,26 @@ string HttpClient::urlEncode(const string& url)
     size_t length = url.length();
     for (size_t i = 0; i < length; i++)
     {
-        if (isalnum((unsigned char)str[i]) || 
-            (str[i] == '-') ||
-            (str[i] == '_') || 
-            (str[i] == '.') || 
-            (str[i] == '~') ||
-			(str[i] == '&'))
-            strTemp += str[i];
-        else if (str[i] == ' ')
+        if (isalnum((unsigned char)url[i]) || 
+            (url[i] == '-') ||
+            (url[i] == '_') || 
+            (url[i] == '.') || 
+            (url[i] == '~') ||
+			(url[i] == '&'))
+            strTemp += url[i];
+        else if (url[i] == ' ')
             strTemp += "+";
         else
         {
             strTemp += '%';
-            strTemp += ToHex((unsigned char)url[i] >> 4);
-            strTemp += ToHex((unsigned char)url[i] % 16);
+            strTemp += toHex((unsigned char)url[i] >> 4);
+            strTemp += toHex((unsigned char)url[i] % 16);
         }
     }
     return strTemp;
 }
-
-unsigned char HttpClient::toHex();
+//////////////////////////////////////////////////////////////////////////
+unsigned char HttpClient::toHex(int x)
 {
 	 return  x > 9 ? x + 55 : x + 48; 
 }
@@ -109,14 +108,14 @@ void HttpLogin::loginServer()
 	if (downloadPage(0))
 	{
 		// build a parameters string for login request.
-		map<string, string> params = getLoginParams();
+		map<string, string> params = getParams();
 		for (map<string, string>::const_iterator ci = params.cbegin(); ci != params.cend(); ++ci)
 		{
 			singleParam = ci->first + "=" + ci->second + "&";
 			allParam.append(singleParam);
 		}
 		allParam = urlEncode(allParam);  // encode special characters.
-		allParam += "tbUserName=" + userName + "&tbPassword=" + password + "&btnLogin=%E7%99%BB++%E5%BD%95&txtReturnUrl=http%3A%2F%2Fwww.cnblogs.com%2F";
+		allParam += "tbUserName=" + m_strName + "&tbPassword=" + m_strPasswd + "&btnLogin=%E7%99%BB++%E5%BD%95&txtReturnUrl=http%3A%2F%2Fwww.cnblogs.com%2F";
 		
 		initialConnection(0, allParam.c_str(), url, host, refer, file);
 		curl_easy_perform(getCurlHandle());
@@ -160,4 +159,412 @@ map<string, string> HttpLogin::getParams()
 HttpLogin::~HttpLogin()
 {
 
+}
+//////////////////////////////////////////////////////////////////////////
+// home page.
+HttpHomePage::HttpHomePage(int page)
+{
+	setPages(page);
+}
+
+void HttpHomePage::run()
+{
+	parseHomepage();
+}
+
+void HttpHomePage::parseHomepage()
+{
+	if (downloadPage(getPages()))
+	{
+		XmlParser::parseArticles(m_items, HOME_TEMP, XmlParser::HOMEPAGE);
+	}
+}
+
+bool HttpHomePage::downloadPage(int page /* = 1 */)
+{
+	FILE* file = fopen(HOME_TEMP, "w");
+	CURLcode res = CURLE_FAILED_INIT;
+	int usePost = 0;
+	char params[256] = {'\0'};
+	char chRefer[256] = {'\0'};
+	string url, host;
+	string refer = "";
+
+	host = "Host: www.cnblogs.com";
+	// If what we want is the first page, we use GET method instead
+	// and dont sent extra JSON data. URL and refer are little different.
+	if (page == 1) 
+	{
+		url = "http://www.cnblogs.com/";
+		usePost = 0;
+	}
+	else
+	{
+		// If we want the rest pages, we then use POST method to send JSON data to web server
+		sprintf(chRefer, "Referer: http://www.cnblogs.com/#p%d", page);
+		sprintf(params, "{'CategoryType':'SiteHome','ParentCategoryId':0,'CategoryId':808,'PageIndex':%d,'ItemListActionName':'PostList'}", page);
+		url = "http://www.cnblogs.com/mvc/AggSite/PostList.aspx";
+		refer = chRefer;
+		usePost = 1; 
+	}
+
+	initialConnection(usePost, params, url.c_str(), host.c_str(), refer.c_str(), file);
+	if (curl_easy_perform(getCurlHandle()) == CURLE_OK)
+	{
+		fclose(file);
+		return true;
+	}
+	fclose(file);
+	return false;
+}
+//////////////////////////////////////////////////////////////////////////
+// candidate posts
+HttpCandidates::HttpCandidates(int page)
+{
+	setPages(page);
+}
+
+void HttpCandidates::run()
+{
+	parseCandidates();
+}
+
+void HttpCandidates::parseCandidates()
+{
+	if (downloadPage(getPages()))
+	{
+		// to be changed
+		XmlParser::parseArticles(m_items, HOME_TEMP, XmlParser::CANDIDATES);
+	}
+}
+
+bool HttpCandidates::downloadPage(int page /* = 1 */)
+{
+	// {"CategoryType":"HomeCandidate","ParentCategoryId":0,"CategoryId":108697,"PageIndex":2,"ItemListActionName":"PostList"}
+	FILE* file = fopen(CANDIDATES_TEMP, "w");
+	CURLcode res = CURLE_FAILED_INIT;
+	int usePost = 0;
+	char params[256] = {'\0'};
+	char chRefer[256] = {'\0'};
+	string url, host;
+	string refer = "";
+
+	host = "Host: www.cnblogs.com";
+	// If what we want is the first page, we use GET method instead
+	// and dont sent extra JSON data. URL and refer are little different.
+	if (page == 1) 
+	{
+		url = "http://www.cnblogs.com/candidate/";
+		refer = "Referer: http://www.cnblogs.com/";
+		usePost = 0;
+	}
+	else
+	{
+		// If we want the rest pages, we then use POST method to send JSON data to web server
+		sprintf(chRefer, "Referer: http://www.cnblogs.com/candidate/#p%d", page);
+		sprintf(params, "{'CategoryType':'HomeCandidate','ParentCategoryId':0,'CategoryId':108697,'PageIndex':%d,'ItemListActionName':'PostList'}", page);
+		url = "http://www.cnblogs.com/mvc/AggSite/PostList.aspx";
+		refer = chRefer;
+		usePost = 1; 
+	}
+
+	initialConnection(usePost, params, url.c_str(), host.c_str(), refer.c_str(), file);
+	if (curl_easy_perform(getCurlHandle()) == CURLE_OK)
+	{
+		fclose(file);
+		return true;
+	}
+	fclose(file);
+	return false;
+}
+
+//////////////////////////////////////////////////////////////////////////
+// my comments
+HttpComments::HttpComments(int page)
+{
+	setPages(page);
+}
+
+void HttpComments::run()
+{
+	parseMycomments();
+}
+
+void HttpComments::parseMycomments()
+{
+	if (downloadPage(getPages()))
+	{
+		XmlParser::parseArticles(m_items, COMMENTS_TEMP, XmlParser::MYCOMMENTS);
+	}
+}
+
+bool HttpComments::downloadPage(int page /* = 0 */)
+{
+	// {"CategoryType":"MyCommented","ParentCategoryId":0,"CategoryId":0,"PageIndex":2,"ItemListActionName":"PostList"}
+	FILE* file = fopen(COMMENTS_TEMP, "w");
+	CURLcode res = CURLE_FAILED_INIT;
+	int usePost = 0;
+	char params[256] = {'\0'};
+	char chRefer[256] = {'\0'};
+	string url, host;
+	string refer = "";
+
+	host = "Host: www.cnblogs.com";
+	// If what we want is the first page, we use GET method instead
+	// and dont sent extra JSON data. URL and refer are little different.
+	if (page == 1) 
+	{
+		url = "http://www.cnblogs.com/aggsite/mycommented";
+		refer = "Referer: http://www.cnblogs.com/";
+		usePost = 0;
+	}
+	else
+	{
+		// If we want the rest pages, we then use POST method to send JSON data to web server
+		sprintf(chRefer, "Referer: http://www.cnblogs.com/aggsite/mycommented#p%d", page);
+		sprintf(params, "{'CategoryType':'MyCommented','ParentCategoryId':0,'CategoryId':0,'PageIndex':%d,'ItemListActionName':'PostList'}", page);
+		url = "http://www.cnblogs.com/mvc/AggSite/PostList.aspx";
+		refer = chRefer;
+		usePost = 1; 
+	}
+
+	initialConnection(usePost, params, url.c_str(), host.c_str(), refer.c_str(), file);
+	if (curl_easy_perform(getCurlHandle()) == CURLE_OK)
+	{
+		fclose(file);
+		return true;
+	}
+	fclose(file);
+	return false;
+}
+
+//////////////////////////////////////////////////////////////////////////
+// my posts
+HttpMyposts::HttpMyposts(int page)
+{
+
+}
+
+void HttpMyposts::run()
+{
+	parseMyposts();
+}
+
+void HttpMyposts::parseMyposts()
+{
+	if (downloadPage(getPages())
+	{
+		XmlParser::parseArticles(m_items, COMMENTS_TEMP, XmlParser::MYPOSTS);
+	} 
+}
+
+bool HttpMyposts::downloadPage(int page /* = 0 */)
+{
+
+}
+
+//////////////////////////////////////////////////////////////////////////
+// news
+HttpNews::HttpNews(int page)
+{
+	setPages(page);
+}
+
+void HttpNews::run()
+{
+	parseNews();
+}
+
+void HttpNews::parseNews()
+{
+	if (downloadPage(getPages()))
+	{
+		XmlParser::parseArticles(m_items, NEWS_TEMP, XmlParser::NEWS);
+	}
+}
+
+bool HttpNews::downloadPage(int page /* = 0 */)
+{
+	// {"CategoryType":"News","ParentCategoryId":0,"CategoryId":-1,"PageIndex":2,"ItemListActionName":"NewsList"}
+	FILE* file = fopen(NEWS_TEMP, "w");
+	CURLcode res = CURLE_FAILED_INIT;
+	int usePost = 0;
+	char params[256] = {'\0'};
+	char chRefer[256] = {'\0'};
+	string url, host;
+	string refer = "";
+
+	host = "Host: www.cnblogs.com";
+	// If what we want is the first page, we use GET method instead
+	// and dont sent extra JSON data. URL and refer are little different.
+	if (page == 1) 
+	{
+		url = "http://www.cnblogs.com/news/";
+		refer = "Referer: http://www.cnblogs.com/";
+		usePost = 0;
+	}
+	else
+	{
+		// If we want the rest pages, we then use POST method to send JSON data to web server
+		sprintf(chRefer, "Referer: http://www.cnblogs.com/news/#p%d", page);
+		sprintf(params, "{'CategoryType':'News','ParentCategoryId':0,'CategoryId':-1,'PageIndex':%d,'ItemListActionName':'NewsList'}", page);
+		url = "http://www.cnblogs.com/mvc/AggSite/NewsList.aspx";
+		refer = chRefer;
+		usePost = 1; 
+	}
+
+	initialConnection(usePost, params, url.c_str(), host.c_str(), refer.c_str(), file);
+	if (curl_easy_perform(getCurlHandle()) == CURLE_OK)
+	{
+		fclose(file);
+		return true;
+	}
+	fclose(file);
+
+	return false;
+}
+
+//////////////////////////////////////////////////////////////////////////
+// picks
+HttpPicks::HttpPicks(int page)
+{
+	setPages(page);
+}
+
+void HttpPicks::run()
+{
+	parsePickings();
+}
+
+void HttpPicks::parsePickings()
+{
+	if (downloadPage(getPages()))
+	{
+		XmlParser::parseArticles(m_items, PICKS_TEMP, XmlParser::PICKINGS);
+	}
+}
+
+bool HttpPicks::downloadPage(int page /* = 0 */)
+{
+	// {"CategoryType":"Picked","ParentCategoryId":0,"CategoryId":-2,"PageIndex":2,"ItemListActionName":"PostList"}
+	FILE* file = fopen(PICKS_TEMP, "w");
+	CURLcode res = CURLE_FAILED_INIT;
+	int usePost = 0;
+	char params[256] = {'\0'};
+	char chRefer[256] = {'\0'};
+	string url, host;
+	string refer = "";
+
+	host = "Host: www.cnblogs.com";
+	// If what we want is the first page, we use GET method instead
+	// and dont sent extra JSON data. URL and refer are little different.
+	if (page == 1) 
+	{
+		url = "http://www.cnblogs.com/pick/";
+		refer = "Referer: http://www.cnblogs.com/";
+		usePost = 0;
+	}
+	else
+	{
+		// If we want the rest pages, we then use POST method to send JSON data to web server
+		sprintf(chRefer, "Referer: http://www.cnblogs.com/pick/#p%d", page);
+		sprintf(params, "{'CategoryType':'Picked','ParentCategoryId':0,'CategoryId':-2,'PageIndex':%d,'ItemListActionName':'PostList'}", page);
+		url = "http://www.cnblogs.com/mvc/AggSite/PostList.aspx";
+		refer = chRefer;
+		usePost = 1; 
+	}
+
+	initialConnection(usePost, params, url.c_str(), host.c_str(), refer.c_str(), file);
+	if (curl_easy_perform(getCurlHandle()) == CURLE_OK)
+	{
+		fclose(file);
+		return true;
+	}
+	fclose(file);
+
+	return false;
+}
+
+//////////////////////////////////////////////////////////////////////////
+// votes
+HttpRecommends::HttpRecommends()
+{
+
+}
+
+void HttpRecommends::run()
+{
+
+}
+
+void HttpRecommends::parseRecommends()
+{
+
+
+}
+
+bool HttpRecommends::downloadPage(int page /* = 0 */)
+{
+
+}
+
+//////////////////////////////////////////////////////////////////////////
+// votes
+HttpVotes::HttpVotes(int page)
+{
+	setPages(page);
+}
+
+void HttpVotes::run()
+{
+	parseMyvotes();
+}
+
+void HttpVotes::parseMyvotes()
+{
+	if (downloadPage(getPages()))
+	{
+		XmlParser::parseArticles(m_items, VOTES_TEMP, XmlParser::MYVOTES);
+	}
+}
+
+bool HttpVotes::downloadPage(int page /* = 0 */)
+{
+	// {"CategoryType":"MyDigged","ParentCategoryId":0,"CategoryId":0,"PageIndex":2,"ItemListActionName":"PostList"}
+	FILE* file = fopen(VOTES_TEMP, "w");
+	CURLcode res = CURLE_FAILED_INIT;
+	int usePost = 0;
+	char params[256] = {'\0'};
+	char chRefer[256] = {'\0'};
+	string url, host;
+	string refer = "";
+
+	host = "Host: www.cnblogs.com";
+	// If what we want is the first page, we use GET method instead
+	// and dont sent extra JSON data. URL and refer are little different.
+	if (page == 1) 
+	{
+		url = "http://www.cnblogs.com/aggsite/mydigged";
+		refer = "Referer: http://www.cnblogs.com/";
+		usePost = 0;
+	}
+	else
+	{
+		// If we want the rest pages, we then use POST method to send JSON data to web server
+		sprintf(chRefer, "Referer: http://www.cnblogs.com/aggsite/mydigged#p%d", page);
+		sprintf(params, "{'CategoryType':'MyDigged','ParentCategoryId':0,'CategoryId':0,'PageIndex':%d,'ItemListActionName':'PostList'}", page);
+		url = "http://www.cnblogs.com/mvc/AggSite/PostList.aspx";
+		refer = chRefer;
+		usePost = 1; 
+	}
+
+	initialConnection(usePost, params, url.c_str(), host.c_str(), refer.c_str(), file);
+	if (curl_easy_perform(getCurlHandle()) == CURLE_OK)
+	{
+		fclose(file);
+		return true;
+	}
+	fclose(file);
+
+	return false;
 }

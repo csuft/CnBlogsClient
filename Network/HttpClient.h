@@ -42,14 +42,15 @@ public:
 	~HttpClient(void);
 	CURL* getCurlHandle() const { return m_curl; }
 	struct curl_slist* getCurlHeader() const { return m_header; }
-	string urlEncode(const string& url);
-	unsigned char toHex();
+	int getPages() const { return m_pages; }
+	void setPages(int page) { m_pages = page; } 
+
 protected:
 	virtual void run();		// thread function, the start point of a thread.
-	virtual bool initialConnection(int usePost, const char* params, const char* url, const char* host, const char* refer);
-	virtual void downloadPage(int page = 0) = 0;
-	virtual int getPages() const { return m_pages; }
-	virtual void setPages(int page) { m_pages = page; } 
+	virtual bool initialConnection(int usePost, const char* params, const char* url, const char* host, const char* refer, FILE* file);
+	virtual bool downloadPage(int page = 1) = 0;
+	string urlEncode(const string& url);
+	unsigned char toHex(int x);
 	virtual size_t write_callback(char* data, int size, int nmemb, void* stream); 
 
 private:
@@ -67,12 +68,12 @@ public:
 	HttpLogin(string userName, string password) : m_strName(userName), m_strPasswd(password) {}
 	~HttpLogin();
 	bool getState() const { return m_flags; }
-	
+
 protected:
 	void run();
 	void loginServer();
-	bool downloadPage(int page = 0);
-	map<string, string> getLoginParams();
+	bool downloadPage(int page = 1);
+	map<string, string> getParams();
 
 private:
 	bool m_flags;
@@ -86,13 +87,15 @@ private:
 class HttpHomePage : HttpClient
 {
 public:
-	HttpHomePage();
+	HttpHomePage(int page);
 	~HttpHomePage();
 	const vector<Article>& getVector() const { return m_items;}
 
 protected:
 	void run();
 	void parseHomepage();
+	bool downloadPage(int page = 1);
+
 private:
 	vector<Article> m_items;
 };
@@ -103,13 +106,14 @@ private:
 class HttpCandidates : HttpClient
 {
 public:
-	HttpCandidates();
+	HttpCandidates(int page);
 	~HttpCandidates();
 	const vector<Article>& getVector() const { return m_items; }
 
 protected:
 	void run();
 	void parseCandidates();
+	bool downloadPage(int page = 1);
 
 private:
 	vector<Article> m_items;
@@ -121,13 +125,14 @@ private:
 class HttpComments : HttpClient
 {
 public:
-	HttpComments();
+	HttpComments(int page);
 	~HttpComments();
 	const vector<Article>& getVector() const { return m_items; }
 
 protected:
 	void run();
 	void parseMycomments();
+	bool downloadPage(int page = 1);
 
 private:
 	vector<Article> m_items;
@@ -139,13 +144,14 @@ private:
 class HttpMyposts : HttpClient
 {
 public:
-	HttpMyposts();
+	HttpMyposts(int page);
 	~HttpMyposts();
 	const vector<Article>& getVector() const { return m_items; }
 
 protected:
 	void run();
 	void parseMyposts();
+	bool downloadPage(int page = 1);
 
 private:
 	vector<Article> m_items;
@@ -157,13 +163,14 @@ private:
 class HttpNews : HttpClient
 {
 public:
-	HttpNews();
+	HttpNews(int page);
 	~HttpNews();
 	const vector<Article>& getVector() const { return m_items; }
 
 protected:
 	void run();
 	void parseNews();
+	bool downloadPage(int page = 1);
 
 private:
 	vector<Article> m_items;
@@ -175,13 +182,14 @@ private:
 class HttpPicks : HttpClient
 {
 public:
-	HttpPicks();
+	HttpPicks(int page);
 	~HttpPicks();
 	const vector<Article>& getVector() const { return m_items; }
 
 protected:
 	void run();
 	void parsePickings();
+	bool downloadPage(int page = 1);
 
 private:
 	vector<Article> m_items;	
@@ -195,14 +203,15 @@ class HttpRecommends : HttpClient
 public:
 	HttpRecommends();
 	~HttpRecommends();
-	const vector<map<wstring, wstring> >& getVector() const { return m_items; }
+	const map<wstring, wstring>& getVector() const { return m_items; }
 
 protected:
 	void run();
 	void parseRecommends();
+	bool downloadPage(int page = 1);
 
 private:
-	vector<map<wstring, wstring> > m_items;
+	map<wstring, wstring> m_items;
 };
 
 /*
@@ -211,13 +220,14 @@ private:
 class HttpVotes : HttpClient
 {
 public:
-	HttpVotes();
+	HttpVotes(int page);
 	~HttpVotes();
 	const vector<Article>& getVector() const { return m_items; }
 
 protected:
 	void run();
 	void parseMyvotes();
+	bool downloadPage(int page = 1);
 
 private:
 	vector<Article> m_items;

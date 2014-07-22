@@ -38,6 +38,8 @@ class HttpClient : QThread
 	Q_OBJECT
 
 public:
+	typedef size_t (*WriteFunc)(char *data, int size, int nmemb, void* stream);
+
 	HttpClient();
 	~HttpClient(void);
 	CURL* getCurlHandle() const { return m_curl; }
@@ -46,7 +48,7 @@ public:
 	void setPages(int page) { m_pages = page; } 
 
 protected:
-	virtual void run();		// thread function, the start point of a thread.
+	virtual void run(){}		// thread function, the start point of a thread.
 	virtual bool initialConnection(int usePost, const char* params, const char* url, const char* host, const char* refer, FILE* file);
 	virtual bool downloadPage(int page = 1) = 0;
 	string urlEncode(const string& url);
@@ -88,7 +90,7 @@ class HttpHomePage : HttpClient
 {
 public:
 	HttpHomePage(int page);
-	~HttpHomePage();
+	~HttpHomePage(){}
 	const vector<Article>& getVector() const { return m_items;}
 
 protected:
@@ -107,7 +109,7 @@ class HttpCandidates : HttpClient
 {
 public:
 	HttpCandidates(int page);
-	~HttpCandidates();
+	~HttpCandidates(){}
 	const vector<Article>& getVector() const { return m_items; }
 
 protected:
@@ -126,7 +128,7 @@ class HttpComments : HttpClient
 {
 public:
 	HttpComments(int page);
-	~HttpComments();
+	~HttpComments(){}
 	const vector<Article>& getVector() const { return m_items; }
 
 protected:
@@ -145,7 +147,7 @@ class HttpMyposts : HttpClient
 {
 public:
 	HttpMyposts(int page);
-	~HttpMyposts();
+	~HttpMyposts(){}
 	const vector<Article>& getVector() const { return m_items; }
 
 protected:
@@ -164,7 +166,7 @@ class HttpNews : HttpClient
 {
 public:
 	HttpNews(int page);
-	~HttpNews();
+	~HttpNews(){}
 	const vector<Article>& getVector() const { return m_items; }
 
 protected:
@@ -183,7 +185,7 @@ class HttpPicks : HttpClient
 {
 public:
 	HttpPicks(int page);
-	~HttpPicks();
+	~HttpPicks(){}
 	const vector<Article>& getVector() const { return m_items; }
 
 protected:
@@ -202,7 +204,7 @@ class HttpRecommends : HttpClient
 {
 public:
 	HttpRecommends();
-	~HttpRecommends();
+	~HttpRecommends(){}
 	const map<wstring, wstring>& getVector() const { return m_items; }
 
 protected:
@@ -221,7 +223,7 @@ class HttpVotes : HttpClient
 {
 public:
 	HttpVotes(int page);
-	~HttpVotes();
+	~HttpVotes(){}
 	const vector<Article>& getVector() const { return m_items; }
 
 protected:

@@ -35,6 +35,7 @@ bool HttpClient::initialConnection(int usePost,
 	{
 		return false;
 	}
+	
 	m_header = curl_slist_append(m_header, host);
 	m_header = curl_slist_append(m_header, refer);
 
@@ -47,7 +48,7 @@ bool HttpClient::initialConnection(int usePost,
 	curl_easy_setopt(m_curl, CURLOPT_POST, usePost);	  
 	curl_easy_setopt(m_curl, CURLOPT_VERBOSE, 1);  
 	curl_easy_setopt(m_curl, CURLOPT_COOKIEFILE, "cookie.dat");
-	curl_easy_setopt(m_curl, CURLOPT_WRITEFUNCTION, write_callback);  
+	curl_easy_setopt(m_curl, CURLOPT_WRITEFUNCTION, &HttpClient::write_callback);  
 	curl_easy_setopt(m_curl, CURLOPT_WRITEDATA, file); 
 
 	return true;
@@ -352,7 +353,7 @@ void HttpMyposts::run()
 
 void HttpMyposts::parseMyposts()
 {
-	if (downloadPage(getPages())
+	if (downloadPage(getPages()))
 	{
 		XmlParser::parseArticles(m_items, COMMENTS_TEMP, XmlParser::MYPOSTS);
 	} 
@@ -360,7 +361,7 @@ void HttpMyposts::parseMyposts()
 
 bool HttpMyposts::downloadPage(int page /* = 0 */)
 {
-
+	return false;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -505,7 +506,7 @@ void HttpRecommends::parseRecommends()
 
 bool HttpRecommends::downloadPage(int page /* = 0 */)
 {
-
+	return false;
 }
 
 //////////////////////////////////////////////////////////////////////////

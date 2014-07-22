@@ -469,5 +469,11 @@
     <None Include="Resources\mainframe.qss">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Resources\images\app.ico" />
+    <None Include="Resources\images\24K.png" />
+    <None Include="Resources\images\checkmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources\images\apprc.rc" />
   </ItemGroup>
 </Project>

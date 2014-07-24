@@ -1,4 +1,8 @@
-﻿#refresh, #login, #about {
+﻿* {
+	font-family: "sans-serif";
+}
+
+#refresh, #login, #about {
 	background: transparent;
 	width: 90px;
 	height: 35;
@@ -6,7 +10,7 @@
 	color: rgb(202, 221, 254);
 	font-size: 14px;
 	font-weight: bold;
-	font-family: sans-serif;
+	font-family: "sans-serif";
 }
 
 #open {
@@ -17,7 +21,7 @@
 	color: rgb(202, 221, 254);
 	font-size: 14px;
 	font-weight: bold;
-	font-family: sans-serif;
+	font-family: "sans-serif";
 }
 
 #refresh:hover, #open:hover, #login:hover, #about:hover {
@@ -39,7 +43,7 @@
 #loading {
 	font-size: 12px;
 	color: rgb(202, 221, 254);
-	font-family: sans-serif;
+	font-family: "sans-serif";
 }
 
 #bottomWidget {
@@ -53,7 +57,7 @@
 #loginTitle {
 	font-size: 25px;
 	color: rgb(236, 130, 93);
-	font-family: sans-serif;
+	font-family: "sans-serif";
 }
 
 LoginDialog QLineEdit{
@@ -80,7 +84,7 @@ LoginDialog QLineEdit:hover{
 CustomToolButton {
 	background: transparent;
 	font-size: 12px;
-	font-family: sans-serif;
+	font-family: "sans-serif";
 }
 
 QTableView {
@@ -135,7 +139,7 @@ QHeaderView::section {
 	padding-left: 4px;
 	border: none;
 	min-height: 25px;
-	font-size: 10px;
+	font-size: 12px;
 }
 
 QScrollBar:horizontal {
@@ -144,7 +148,7 @@ QScrollBar:horizontal {
 }
 
 QScrollBar::handle:horizontal {
-	background: rgb(157, 178, 241);
+	background: rgb(206, 226, 255);
 	border-radius: 2px;
 }
 
@@ -164,7 +168,7 @@ QScrollBar:vertical {
 }
 
 QScrollBar::handle:vertical {
-	background: rgb(157, 178, 241);
+	background: rgb(206, 226, 255);
 	border-radius: 2px;
 }
 

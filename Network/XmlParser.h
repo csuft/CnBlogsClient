@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <QFile>
 
 #include "Commons.h"
 
@@ -31,9 +32,15 @@ public:
 	static bool getLoginResult(const char* fileName);
 
 	static void parseArticles(vector<Article>& items, const char* fileName, ParseType type);
-
+	static void parseRecommends(map<string, string> bloggers, const char* fileName);
 private:
-
+	void parseHomepage(vector<Article>& items, const char* fileName);
+	void parsePickings(vector<Article>& items, const char* fileName);
+	void parseCandidates(vector<Article>& items, const char* fileName);
+	void parseNews(vector<Article>& items, const char* fileName);
+	void parseMyposts(vector<Article>& items, const char* fileName);
+	void parseMyComments(vector<Article>& items, const char* fileName);
+	void parseMyVotes(vector<Article>& items, const char* fileName);
 };
 
 #endif

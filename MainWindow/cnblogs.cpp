@@ -65,7 +65,7 @@ cnblogs::cnblogs(QWidget *parent)
 	m_stackedWidget = new CStackedWidget(this);
 	QWidget* webContainer = new QWidget(this);
 	m_webView = new QWebView(webContainer);
-	m_webView->load(QUrl("http://www.baidu.com"));
+	m_webView->load(QUrl("http://www.cnblogs.com/csuftzzk"));
 	m_webView->setFixedWidth(880);
 	m_webView->setFixedHeight(545);
 	m_webView->setZoomFactor(0.85);

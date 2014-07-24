@@ -26,6 +26,13 @@ __EVENTTARGET=&__EVENTARGUMENT=&__VIEWSTATE=%2FwEPDwULLTE1MzYzODg2NzZkGAEFHl9fQ2
 
 3. Screenshots
 ==============
+![MethodOne.jpg](https://github.com/csuft/CnBlogsClient/raw/master/Screenshots/2014-07-24_204458.png "")
+
+![MethodOne.jpg](https://github.com/csuft/CnBlogsClient/raw/master/Screenshots/Schirmfoto_2014-07-14_111003.png "")
+
+![MethodOne.jpg](https://github.com/csuft/CnBlogsClient/raw/master/Screenshots/Schirmfoto_2014-07-14_111045.png "")
+
+![MethodOne.jpg](https://github.com/csuft/CnBlogsClient/raw/master/Screenshots/Schirmfoto_2014-07-24_084258.png "")
 
 4. License
 ==========

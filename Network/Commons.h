@@ -7,13 +7,15 @@ using std::wstring;
 
 typedef struct _article
 {
-	wstring m_author;		// 博主名字
-	wstring m_aurl;			// 博主链接
-	wstring m_title;		// 博文标题
-	wstring m_turl;			// 博文链接
-	string  reads;			// 阅读数
-	string	votes;			// 推荐数
-	string	comments;		// 评论数
+	// 博主名字
+	// 博文标题
+	// 博文链接
+	// 博文摘要
+	// 阅读数
+	// 推荐数
+	// 评论数
+	// 发表时间
+	string postAttr[8];		
 }Article;
 
 #endif

@@ -4,13 +4,14 @@
 #include <vector>
 #include <map>
 #include <string>
-#include <QFile>
+#include <fstream>
 
 #include "Commons.h"
+#include "ParserDom.h"
+#pragma comment(lib, "htmlcxx.lib")
 
-using std::vector;
-using std::map;
-using std::string;
+using namespace std;
+using namespace htmlcxx;
 
 class XmlParser
 {
@@ -18,29 +19,14 @@ public:
 	XmlParser(void);
 	~XmlParser(void);
 
-	enum ParseType{
-		HOMEPAGE,
-		CANDIDATES,
-		PICKINGS,
-		MYPOSTS,
-		MYCOMMENTS,
-		MYVOTES,
-		NEWS
-	};
-
 	static map<string, string> getLoginParams(const char* fileName);
 	static bool getLoginResult(const char* fileName);
 
-	static void parseArticles(vector<Article>& items, const char* fileName, ParseType type);
+	static void parseArticles(vector<Article>& items, const char* fileName);
 	static void parseRecommends(map<string, string> bloggers, const char* fileName);
 private:
-	void parseHomepage(vector<Article>& items, const char* fileName);
-	void parsePickings(vector<Article>& items, const char* fileName);
-	void parseCandidates(vector<Article>& items, const char* fileName);
-	void parseNews(vector<Article>& items, const char* fileName);
-	void parseMyposts(vector<Article>& items, const char* fileName);
-	void parseMyComments(vector<Article>& items, const char* fileName);
-	void parseMyVotes(vector<Article>& items, const char* fileName);
+	static tree<HTML::Node> createDom(const char* file);
+	static void parseContents(vector<Article>& items,tree<HTML::Node>& dom);
 };
 
 #endif

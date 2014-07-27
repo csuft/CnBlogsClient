@@ -177,7 +177,7 @@ void HttpHomePage::parseHomepage()
 {
 	if (downloadPage(getPages()))
 	{
-		XmlParser::parseArticles(m_items, HOME_TEMP, XmlParser::HOMEPAGE);
+		XmlParser::parseArticles(m_items, HOME_TEMP);
 	}
 }
 
@@ -235,7 +235,7 @@ void HttpCandidates::parseCandidates()
 	if (downloadPage(getPages()))
 	{
 		// to be changed
-		XmlParser::parseArticles(m_items, HOME_TEMP, XmlParser::CANDIDATES);
+		XmlParser::parseArticles(m_items, CANDIDATES_TEMP);
 	}
 }
 
@@ -295,7 +295,7 @@ void HttpComments::parseMycomments()
 {
 	if (downloadPage(getPages()))
 	{
-		XmlParser::parseArticles(m_items, COMMENTS_TEMP, XmlParser::MYCOMMENTS);
+		XmlParser::parseArticles(m_items, COMMENTS_TEMP);
 	}
 }
 
@@ -355,7 +355,7 @@ void HttpMyposts::parseMyposts()
 {
 	if (downloadPage(getPages()))
 	{
-		XmlParser::parseArticles(m_items, COMMENTS_TEMP, XmlParser::MYPOSTS);
+		XmlParser::parseArticles(m_items, MYBLOGS_TEMP);
 	} 
 }
 
@@ -380,7 +380,7 @@ void HttpNews::parseNews()
 {
 	if (downloadPage(getPages()))
 	{
-		XmlParser::parseArticles(m_items, NEWS_TEMP, XmlParser::NEWS);
+		XmlParser::parseArticles(m_items, NEWS_TEMP);
 	}
 }
 
@@ -441,7 +441,7 @@ void HttpPicks::parsePickings()
 {
 	if (downloadPage(getPages()))
 	{
-		XmlParser::parseArticles(m_items, PICKS_TEMP, XmlParser::PICKINGS);
+		XmlParser::parseArticles(m_items, PICKS_TEMP);
 	}
 }
 
@@ -525,7 +525,7 @@ void HttpVotes::parseMyvotes()
 {
 	if (downloadPage(getPages()))
 	{
-		XmlParser::parseArticles(m_items, VOTES_TEMP, XmlParser::MYVOTES);
+		XmlParser::parseArticles(m_items, VOTES_TEMP);
 	}
 }
 

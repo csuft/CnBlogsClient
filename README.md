@@ -9,20 +9,49 @@ This is a client program for [http://www.cnblogs.com](http://www.cnblogs.com "�
 ============
 
 ##1.1 Features##
-
+* **Login** to server use your blog account
+* The `home page` of **www.cnblogs.com**
+* The **picking** posts
+* The **candidates posts** right now
+* The posts you voted
+* The posts you commented
+* View the posts in your blog
+* To **NOTIFY** you when new posts are created
+* Flexible window layout
 
 ##1.2 HttpClient
+To login to the web server of **www.cnblogs.com**, we have to assemble a http request first. **Libcurl** is a good helper to do something like this. This is a library written by pure C and it supports lots of protocols. Most importantly, libcurl can handle **cookies** file without programmers' intervention.     
 
-__EVENTTARGET=&__EVENTARGUMENT=&__VIEWSTATE=%2FwEPDwULLTE1MzYzODg2NzZkGAEFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYBBQtjaGtSZW1lbWJlcm1QYDyKKI9af4b67Mzq2xFaL9Bt&__EVENTVALIDATION=%2FwEdAAUyDI6H%2Fs9f%2BZALqNAA4PyUhI6Xi65hwcQ8%2FQoQCF8JIahXufbhIqPmwKf992GTkd0wq1PKp6%2B%2F1yNGng6H71Uxop4oRunf14dz2Zt2%2BQKDEIYpifFQj3yQiLk3eeHVQqcjiaAP&tbUserName=csuft&tbPassword=csuft&btnLogin=%E7%99%BB++%E5%BD%95&txtReturnUrl=http%3A%2F%2Fwww.cnblogs.com%2F
+
+##1.3 Htmlcxx
+A question has to be asked when we try to login to web server without browsers like Chrome or IE:**How does the server know who am I?**. Though unkown to us, the server must have some methods to identify different clients. As for www.cnblogs.com, four parameters must appreared in the request URL. They are listed as follows:
+ 
+- ```__EVENTTARGET ```, currently is **empty**
+- ```__EVENTARGUMENT ```, currently is **empty**
+- ```__VIEWSTATE ```, **different** according different users.
+- ```__EVENTVALIDATION``` , **different** according different users.
+- ```tbUserName=***```, user name
+- ```tbPassword```, user password
+- ```btnLogin```=%E7%99%BB++%E5%BD%95(unicode of `登录`)
+- ```txtReturnUrl```=http%3A%2F%2Fwww.cnblogs.com%2F(**http://www.cnblogs.com/**)
 
 2. Compilation
 ==============
 
 2.1 Get the Source Code
 -----------------------
+Open your git bash and change to the directory into which you want to save the source code, and type the following command:
 
+    $ git clone git@github.com:csuft/CnBlogsClient.git .
+When the command finished, you can find a newly created directory in the path you choosed.
 2.2 prerequisite
 ----------------
+This project is build using Qt framework and two 3rd party libraries. If you want to recompile the source code, then you have to meet the following requirements:  
+
+1. **Qt library** with version **5.2** or higher. Old versions may still work.  
+2. ```libcurl-7.18.0-win32-msvc``` is the best choice. Since under my machine this is the only version which I compiled successfully.
+3. ```htmlcxx-0.84``` is the latest version you can get on the website. You have to **COMPILE** the library first if you want to integrate it into your project. **NOTE:** you have to adjust the runtime library version to apply your project.
+
 
 3. Screenshots
 ==============
@@ -36,6 +65,6 @@ __EVENTTARGET=&__EVENTARGUMENT=&__VIEWSTATE=%2FwEPDwULLTE1MzYzODg2NzZkGAEFHl9fQ2
 
 4. License
 ==========
-
+This software is licensed under LGPL, you can use or redistribute it freely.
 
 

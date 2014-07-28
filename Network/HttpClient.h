@@ -17,23 +17,10 @@ using std::string;
 #pragma comment(lib, "libcurl.lib")
 
 /*
- * These files are used to store temp data downloaded from the web server.
- * And we use these files to parse table items.
- */
-#define HOME_TEMP "home.tmp"
-#define LOGIN_TEMP "login.tmp"
-#define PICKS_TEMP "picks.tmp"
-#define CANDIDATES_TEMP "candidates.tmp"
-#define VOTES_TEMP "votes.tmp"
-#define NEWS_TEMP "news.tmp"
-#define COMMENTS_TEMP "comments.tmp"
-#define MYBLOGS_TEMP "myblogs.tmp"
-
-/*
  * The base class which implements the common functionalities, such as
  * initialize the traffic environment, make connections with web server.
  */
-class HttpClient : QThread
+class HttpClient : public QThread
 {
 	Q_OBJECT
 
@@ -64,12 +51,13 @@ private:
 /*
  * This class represents the login process
  */
-class HttpLogin : HttpClient
+class HttpLogin : public HttpClient
 {
+	Q_OBJECT
 public:
 	HttpLogin(string userName, string password) : m_strName(userName), m_strPasswd(password) {}
 	~HttpLogin();
-	bool getState() const { return m_flags; }
+	const string& getState() const { return m_loginResult; }
 
 protected:
 	void run();
@@ -78,7 +66,7 @@ protected:
 	map<string, string> getParams();
 
 private:
-	bool m_flags;
+	string m_loginResult;
 	string m_strName;
 	string m_strPasswd;
 };
@@ -86,8 +74,9 @@ private:
 /*
  * This class is used to deal with home page.
  */
-class HttpHomePage : HttpClient
+class HttpHomePage : public HttpClient
 {
+	Q_OBJECT
 public:
 	HttpHomePage(int page);
 	~HttpHomePage(){}
@@ -105,8 +94,9 @@ private:
 /*
  * This class is used to deal with candidate posts.
  */
-class HttpCandidates : HttpClient
+class HttpCandidates : public HttpClient
 {
+	Q_OBJECT
 public:
 	HttpCandidates(int page);
 	~HttpCandidates(){}
@@ -124,8 +114,9 @@ private:
 /*
  * This class is used to deal with posts which I commented.
  */
-class HttpComments : HttpClient
+class HttpComments : public HttpClient
 {
+	Q_OBJECT
 public:
 	HttpComments(int page);
 	~HttpComments(){}
@@ -143,8 +134,9 @@ private:
 /*
  * This class is used to deal with my own posts.
  */
-class HttpMyposts : HttpClient
+class HttpMyposts : public HttpClient
 {
+	Q_OBJECT
 public:
 	HttpMyposts(int page);
 	~HttpMyposts(){}
@@ -162,8 +154,9 @@ private:
 /*
  * This class is used to deal with IT news.
  */
-class HttpNews : HttpClient
+class HttpNews : public HttpClient
 {
+	Q_OBJECT
 public:
 	HttpNews(int page);
 	~HttpNews(){}
@@ -181,8 +174,9 @@ private:
 /*
  * This class is used to deal with posts which are the best.
  */
-class HttpPicks : HttpClient
+class HttpPicks : public HttpClient
 {
+	Q_OBJECT
 public:
 	HttpPicks(int page);
 	~HttpPicks(){}
@@ -200,10 +194,11 @@ private:
 /*
  * This class is used to deal with recommended bloggers.
  */
-class HttpRecommends : HttpClient
+class HttpRecommends : public HttpClient
 {
+	Q_OBJECT
 public:
-	HttpRecommends();
+	HttpRecommends(int page);
 	~HttpRecommends(){}
 	const map<wstring, wstring>& getVector() const { return m_items; }
 
@@ -219,8 +214,9 @@ private:
 /*
  * This class is used to deal with posts which I voted.
  */
-class HttpVotes : HttpClient
+class HttpVotes : public HttpClient
 {
+	Q_OBJECT
 public:
 	HttpVotes(int page);
 	~HttpVotes(){}

@@ -20,7 +20,7 @@ public:
 	~XmlParser(void);
 
 	static map<string, string> getLoginParams(const char* fileName);
-	static bool getLoginResult(const char* fileName);
+	static string getLoginResult(const char* fileName);
 
 	static void parseArticles(vector<Article>& items, const char* fileName);
 	static void parseRecommends(map<string, string> bloggers, const char* fileName);

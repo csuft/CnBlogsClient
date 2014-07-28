@@ -62,10 +62,30 @@ tree<HTML::Node> XmlParser::createDom(const char* fileName)
 /*
  * 登陆请求发送给服务器之后，解析服务器的应答数据，确定是否登陆成功
  */
-bool XmlParser::getLoginResult(const char* fileName)
+string XmlParser::getLoginResult(const char* fileName)
 {
+	string tempVal;
+	tree<HTML::Node> dom = createDom(fileName);
+	tree<HTML::Node>::iterator start = dom.begin();
+	tree<HTML::Node>::iterator end = dom.end();
 
-	return false;
+	for (; start != end; ++start)
+	{
+		// 检查返回页面中的span元素，分几种情况：
+		// 1. 不存在span元素，则说明登录成功
+		// 2. 存在span元素，说明登录失败，返回错误提示
+		if (!start->isTag() && !start->tagName().compare("span"))
+		{
+			start->parseAttributes();
+			if (!start->attribute("id").second.compare("Message"))
+			{
+				tempVal = start->text();
+			}
+		}
+	}
+
+
+	return tempVal;
 }
 /*
  * 本函数为一个转发点，将具体的解析任务委托给对应的函数

@@ -60,6 +60,11 @@
 	font-family: "sans-serif";
 }
 
+#loginResult {
+	color: red;
+	font-size: 11px;
+}
+
 LoginDialog QLineEdit{
 	background: white;
 	border: 1px solid  rgb(146, 163, 217);
@@ -191,3 +196,20 @@ QScrollBar::sub-page:horizontal, QScrollBar::sub-page:vertical {
 	border: none;
 	background: transparent;
 }
+
+QCheckBox::indicator:unchecked {
+    image: url(:/syspic/uncheck_normal);
+}
+
+QCheckBox::indicator:unchecked:hover {
+    image: url(:/syspic/uncheck_highlight);
+}
+
+QCheckBox::indicator:checked {
+    image: url(:/syspic/check_normal);
+}
+
+QCheckBox::indicator:checked:hover {
+    image: url(:/syspic/check_highlight);
+}
+

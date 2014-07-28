@@ -123,13 +123,8 @@ void HttpLogin::loginServer()
 		fclose(file);
 
 		// start parse login result
-		if (XmlParser::getLoginResult(LOGIN_TEMP))
-		{
-			m_flags = true;
-		}
+		m_loginResult = XmlParser::getLoginResult(LOGIN_TEMP);
 	}
-	
-	m_flags = false;
 }
 /* 
  * Download the source file of the login page.
@@ -143,13 +138,9 @@ bool HttpLogin::downloadPage(int page)
 	const char* host = "Host: passport.cnblogs.com";
 
 	initialConnection(0, NULL, url, host, refer, file);
-	if (curl_easy_perform(getCurlHandle()) == CURLE_OK)
-	{
-		fclose(file);
-		return true;
-	}
 	fclose(file);
-	return false;
+	
+	return curl_easy_perform(getCurlHandle()) == CURLE_OK;
 }
 
 map<string, string> HttpLogin::getParams()
@@ -186,7 +177,7 @@ bool HttpHomePage::downloadPage(int page /* = 1 */)
 	FILE* file = fopen(HOME_TEMP, "w");
 	CURLcode res = CURLE_FAILED_INIT;
 	int usePost = 0;
-	char params[256] = {'\0'};
+	char params[512] = {'\0'};
 	char chRefer[256] = {'\0'};
 	string url, host;
 	string refer = "";
@@ -201,7 +192,7 @@ bool HttpHomePage::downloadPage(int page /* = 1 */)
 	}
 	else
 	{
-		// If we want the rest pages, we then use POST method to send JSON data to web server
+		// If we want the rest pages, then we have to use POST method to send JSON data to web server
 		sprintf(chRefer, "Referer: http://www.cnblogs.com/#p%d", page);
 		sprintf(params, "{'CategoryType':'SiteHome','ParentCategoryId':0,'CategoryId':808,'PageIndex':%d,'ItemListActionName':'PostList'}", page);
 		url = "http://www.cnblogs.com/mvc/AggSite/PostList.aspx";
@@ -210,13 +201,10 @@ bool HttpHomePage::downloadPage(int page /* = 1 */)
 	}
 
 	initialConnection(usePost, params, url.c_str(), host.c_str(), refer.c_str(), file);
-	if (curl_easy_perform(getCurlHandle()) == CURLE_OK)
-	{
-		fclose(file);
-		return true;
-	}
 	fclose(file);
-	return false;
+
+	return curl_easy_perform(getCurlHandle()) == CURLE_OK;
+
 }
 //////////////////////////////////////////////////////////////////////////
 // candidate posts
@@ -234,7 +222,6 @@ void HttpCandidates::parseCandidates()
 {
 	if (downloadPage(getPages()))
 	{
-		// to be changed
 		XmlParser::parseArticles(m_items, CANDIDATES_TEMP);
 	}
 }
@@ -245,7 +232,7 @@ bool HttpCandidates::downloadPage(int page /* = 1 */)
 	FILE* file = fopen(CANDIDATES_TEMP, "w");
 	CURLcode res = CURLE_FAILED_INIT;
 	int usePost = 0;
-	char params[256] = {'\0'};
+	char params[512] = {'\0'};
 	char chRefer[256] = {'\0'};
 	string url, host;
 	string refer = "";
@@ -270,13 +257,9 @@ bool HttpCandidates::downloadPage(int page /* = 1 */)
 	}
 
 	initialConnection(usePost, params, url.c_str(), host.c_str(), refer.c_str(), file);
-	if (curl_easy_perform(getCurlHandle()) == CURLE_OK)
-	{
-		fclose(file);
-		return true;
-	}
 	fclose(file);
-	return false;
+
+	return curl_easy_perform(getCurlHandle()) == CURLE_OK;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -305,7 +288,7 @@ bool HttpComments::downloadPage(int page /* = 0 */)
 	FILE* file = fopen(COMMENTS_TEMP, "w");
 	CURLcode res = CURLE_FAILED_INIT;
 	int usePost = 0;
-	char params[256] = {'\0'};
+	char params[512] = {'\0'};
 	char chRefer[256] = {'\0'};
 	string url, host;
 	string refer = "";
@@ -330,17 +313,14 @@ bool HttpComments::downloadPage(int page /* = 0 */)
 	}
 
 	initialConnection(usePost, params, url.c_str(), host.c_str(), refer.c_str(), file);
-	if (curl_easy_perform(getCurlHandle()) == CURLE_OK)
-	{
-		fclose(file);
-		return true;
-	}
 	fclose(file);
-	return false;
+
+	return curl_easy_perform(getCurlHandle()) == CURLE_OK;
 }
 
 //////////////////////////////////////////////////////////////////////////
 // my posts
+// 由于博客园的页面风格运行自定制，定制过的博客DOM结构异构性太大，解析工作难以统一完成
 HttpMyposts::HttpMyposts(int page)
 {
 
@@ -390,7 +370,7 @@ bool HttpNews::downloadPage(int page /* = 0 */)
 	FILE* file = fopen(NEWS_TEMP, "w");
 	CURLcode res = CURLE_FAILED_INIT;
 	int usePost = 0;
-	char params[256] = {'\0'};
+	char params[512] = {'\0'};
 	char chRefer[256] = {'\0'};
 	string url, host;
 	string refer = "";
@@ -415,14 +395,9 @@ bool HttpNews::downloadPage(int page /* = 0 */)
 	}
 
 	initialConnection(usePost, params, url.c_str(), host.c_str(), refer.c_str(), file);
-	if (curl_easy_perform(getCurlHandle()) == CURLE_OK)
-	{
-		fclose(file);
-		return true;
-	}
 	fclose(file);
 
-	return false;
+	return curl_easy_perform(getCurlHandle()) == CURLE_OK;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -451,7 +426,7 @@ bool HttpPicks::downloadPage(int page /* = 0 */)
 	FILE* file = fopen(PICKS_TEMP, "w");
 	CURLcode res = CURLE_FAILED_INIT;
 	int usePost = 0;
-	char params[256] = {'\0'};
+	char params[512] = {'\0'};
 	char chRefer[256] = {'\0'};
 	string url, host;
 	string refer = "";
@@ -476,36 +451,66 @@ bool HttpPicks::downloadPage(int page /* = 0 */)
 	}
 
 	initialConnection(usePost, params, url.c_str(), host.c_str(), refer.c_str(), file);
-	if (curl_easy_perform(getCurlHandle()) == CURLE_OK)
-	{
-		fclose(file);
-		return true;
-	}
 	fclose(file);
 
-	return false;
+	return curl_easy_perform(getCurlHandle()) == CURLE_OK;
 }
 
 //////////////////////////////////////////////////////////////////////////
-// votes
-HttpRecommends::HttpRecommends()
+// Recommend blogs
+// 推荐博客的解析可以从任何一个页面的源码中进行解析
+HttpRecommends::HttpRecommends(int page)
 {
-
+	setPages(page);
 }
 
 void HttpRecommends::run()
 {
-
+	parseRecommends();
 }
 
 void HttpRecommends::parseRecommends()
 {
-
-
+	//if (downloadPage(getPages()))
+	//{
+	//	XmlParser::parseArticles(m_items, PICKS_TEMP);
+	//}
 }
 
 bool HttpRecommends::downloadPage(int page /* = 0 */)
 {
+	//FILE* file = fopen(VOTES_TEMP, "w");
+	//CURLcode res = CURLE_FAILED_INIT;
+	//int usePost = 0;
+	//char params[512] = {'\0'};
+	//char chRefer[256] = {'\0'};
+	//string url, host;
+	//string refer = "";
+
+	//host = "Host: www.cnblogs.com";
+	//// If what we want is the first page, we use GET method instead
+	//// and dont sent extra JSON data. URL and refer are little different.
+	//if (page == 1) 
+	//{
+	//	url = "http://www.cnblogs.com/aggsite/mydigged";
+	//	refer = "Referer: http://www.cnblogs.com/";
+	//	usePost = 0;
+	//}
+	//else
+	//{
+	//	// If we want the rest pages, we then use POST method to send JSON data to web server
+	//	sprintf(chRefer, "Referer: http://www.cnblogs.com/aggsite/mydigged#p%d", page);
+	//	sprintf(params, "{'CategoryType':'MyDigged','ParentCategoryId':0,'CategoryId':0,'PageIndex':%d,'ItemListActionName':'PostList'}", page);
+	//	url = "http://www.cnblogs.com/mvc/AggSite/PostList.aspx";
+	//	refer = chRefer;
+	//	usePost = 1; 
+	//}
+
+	//initialConnection(usePost, params, url.c_str(), host.c_str(), refer.c_str(), file);
+	//fclose(file);
+
+	//return curl_easy_perform(getCurlHandle()) == CURLE_OK;
+
 	return false;
 }
 
@@ -535,7 +540,7 @@ bool HttpVotes::downloadPage(int page /* = 0 */)
 	FILE* file = fopen(VOTES_TEMP, "w");
 	CURLcode res = CURLE_FAILED_INIT;
 	int usePost = 0;
-	char params[256] = {'\0'};
+	char params[512] = {'\0'};
 	char chRefer[256] = {'\0'};
 	string url, host;
 	string refer = "";
@@ -560,12 +565,7 @@ bool HttpVotes::downloadPage(int page /* = 0 */)
 	}
 
 	initialConnection(usePost, params, url.c_str(), host.c_str(), refer.c_str(), file);
-	if (curl_easy_perform(getCurlHandle()) == CURLE_OK)
-	{
-		fclose(file);
-		return true;
-	}
 	fclose(file);
 
-	return false;
+	return curl_easy_perform(getCurlHandle()) == CURLE_OK;
 }

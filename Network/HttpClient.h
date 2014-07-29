@@ -25,8 +25,6 @@ class HttpClient : public QThread
 	Q_OBJECT
 
 public:
-	typedef size_t (*WriteFunc)(char *data, int size, int nmemb, void* stream);
-
 	HttpClient();
 	~HttpClient(void);
 	CURL* getCurlHandle() const { return m_curl; }
@@ -40,7 +38,7 @@ protected:
 	virtual bool downloadPage(int page = 1) = 0;
 	string urlEncode(const string& url);
 	unsigned char toHex(int x);
-	virtual size_t write_callback(char* data, int size, int nmemb, void* stream); 
+	static size_t write_callback(char* data, int size, int nmemb, void* stream); 
 
 private:
 	int m_pages;

@@ -73,7 +73,8 @@ string HttpClient::urlEncode(const string& url)
             (url[i] == '_') || 
             (url[i] == '.') || 
             (url[i] == '~') ||
-			(url[i] == '&'))
+			(url[i] == '&') ||
+			(url[i] == '='))
             strTemp += url[i];
         else if (url[i] == ' ')
             strTemp += "+";
@@ -104,7 +105,7 @@ void HttpLogin::loginServer()
 	string allParam, singleParam;
 	const char* url = "http://passport.cnblogs.com/login.aspx?ReturnUrl=http%3a%2f%2fwww.cnblogs.com%2f";
 	const char* refer = "Referer: http://passport.cnblogs.com/login.aspx?ReturnUrl=http%3A%2F%2Fwww.cnblogs.com%2F";
-	const char* host = "Host: passport.cnblogs.com";
+	const char* host = "Host:passport.cnblogs.com";
 
 	if (downloadPage(0))
 	{
@@ -117,7 +118,6 @@ void HttpLogin::loginServer()
 		}
 		allParam = urlEncode(allParam);  // encode special characters.
 		allParam += "tbUserName=" + m_strName + "&tbPassword=" + m_strPasswd + "&btnLogin=%E7%99%BB++%E5%BD%95&txtReturnUrl=http%3A%2F%2Fwww.cnblogs.com%2F";
-		
 		initialConnection(0, allParam.c_str(), url, host, refer, file);
 		curl_easy_perform(getCurlHandle());
 		fclose(file);
@@ -132,15 +132,19 @@ void HttpLogin::loginServer()
 bool HttpLogin::downloadPage(int page)
 {
 	FILE* file = fopen(LOGIN_TEMP, "w");
-	CURLcode res = CURLE_FAILED_INIT;
 	const char* url = "http://passport.cnblogs.com/login.aspx?ReturnUrl=http%3a%2f%2fwww.cnblogs.com%2f";
 	const char* refer = "Referer: http://www.cnblogs.com/";
 	const char* host = "Host: passport.cnblogs.com";
+	bool flags = false;
 
 	initialConnection(0, NULL, url, host, refer, file);
+	if (curl_easy_perform(getCurlHandle()) == CURLE_OK)
+	{
+		flags = true;
+	}
 	fclose(file);
 	
-	return curl_easy_perform(getCurlHandle()) == CURLE_OK;
+	return flags;
 }
 
 map<string, string> HttpLogin::getParams()

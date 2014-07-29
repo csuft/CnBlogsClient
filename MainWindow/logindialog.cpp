@@ -31,17 +31,18 @@ LoginDialog::LoginDialog(QWidget *parent)
 	m_loginBtn = new QPushButton(QStringLiteral("登录"), this);
 	m_loginBtn->setObjectName("loginBtn");
 	m_loginBtn->setFixedSize(120, 25);
+	
+	m_loginResult = new QLabel(this);
+	m_loginResult->setObjectName("loginResult");
 
 	m_bottomCenter->addRow(new QLabel(QStringLiteral("用户名:"), this), m_nameEdit);
 	m_bottomCenter->addRow(new QLabel(QStringLiteral("密码:"), this), m_pwdEdit);
 	m_bottomCenter->addRow(m_checkBox, m_loginBtn);
+	m_bottomCenter->addRow(m_loginResult);
 
 	m_bottomLayout->addStretch();
 	m_bottomLayout->addLayout(m_bottomCenter);
 	m_bottomLayout->addStretch();
-
-	m_loginResult = new QLabel(this);
-	m_loginResult->setObjectName("loginResult");
 
 	QWidget* bottomWidget = new QWidget(this);
 	bottomWidget->setObjectName("bottomWidget");
@@ -49,8 +50,6 @@ LoginDialog::LoginDialog(QWidget *parent)
 
 	m_mainLayout->addLayout(m_topLayout);
 	m_mainLayout->addWidget(bottomWidget);
-	m_mainLayout->addWidget(m_loginResult);
-	m_mainLayout->addStretch();
 	m_mainLayout->setSpacing(0);
 	m_mainLayout->setContentsMargins(5, 5, 5, 5);
 
@@ -82,14 +81,21 @@ void LoginDialog::paintEvent(QPaintEvent* e)
 
 void LoginDialog::onLoginClicked()
 {
-	m_loginThread = new HttpLogin(m_nameEdit->text().toStdString(), m_pwdEdit->text().toStdString());
-	connect(m_loginThread, SIGNAL(finished()), this, SLOT(onThreadFinished()));
-	m_loginResult->setText(QStringLiteral("正在登录..."));
-	m_loginBtn->setDisabled(true);
-	m_nameEdit->setDisabled(true);
-	m_pwdEdit->setDisabled(true);
-	// 启动线程进行登录
-	m_loginThread->start();
+	if (m_nameEdit->text().isEmpty() || m_pwdEdit->text().isEmpty())
+	{
+		m_loginResult->setText(QStringLiteral("注意：用户名和密码缺一不可！"));
+	}
+	else
+	{
+		m_loginThread = new HttpLogin(m_nameEdit->text().toStdString(), m_pwdEdit->text().toStdString());
+		connect(m_loginThread, SIGNAL(finished()), this, SLOT(onThreadFinished()));
+		m_loginResult->setText(QStringLiteral("正在登录..."));
+		m_loginBtn->setDisabled(true);
+		m_nameEdit->setDisabled(true);
+		m_pwdEdit->setDisabled(true);
+		// 启动线程进行登录
+		m_loginThread->start();
+	}
 }
 
 void LoginDialog::onCheckboxToggled(bool state)

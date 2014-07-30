@@ -1,4 +1,4 @@
-#ifndef CNBLOGS_H
+﻿#ifndef CNBLOGS_H
 #define CNBLOGS_H
 
 #include <QtWidgets/QWidget>
@@ -43,6 +43,7 @@ private slots:
 	void onOpenWithIEClicked();
 	void onLoginClicked();
 	void onAboutClicked();
+	void onLoginSucceed();
 
 private:
 	void restoreSettings();
@@ -76,8 +77,8 @@ private:
 	QList<CustomToolButton*> m_toolBtnList;
 
 	SystemTray* m_systemtray;
-	bool flag;
-	bool isLogin;
+	bool flag;		 // 控制列表是否展开
+	bool isLogin;    // 是否已经登录
 };
 
 #endif // CNBLOGS_H

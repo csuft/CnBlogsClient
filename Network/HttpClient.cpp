@@ -1,15 +1,9 @@
 ﻿#include "HttpClient.h"
 
-HttpClient::HttpClient(void): m_header(NULL), m_pages(1)
+HttpClient::HttpClient(void): m_pages(1)
 {
 	curl_global_init(CURL_GLOBAL_ALL);
 	m_curl = curl_easy_init();
-	// generate a HTTP header for web request.
-	m_header = curl_slist_append(m_header,"User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)"); 
-	m_header = curl_slist_append(m_header,"Accept: text/html, application/xhtml+xml, */*");
-    m_header = curl_slist_append(m_header,"Accept-Language:zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3");
-    m_header = curl_slist_append(m_header,"Accept-Encoding:deflate");
-    m_header = curl_slist_append(m_header,"Connection:keep-alive");
 }
 /*
  * release libcurl resources
@@ -35,18 +29,23 @@ bool HttpClient::initialConnection(int usePost,
 	{
 		return false;
 	}
-	
+	m_header = NULL;
+	// generate a HTTP header for web request.
+	m_header = curl_slist_append(m_header,"User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)"); 
 	m_header = curl_slist_append(m_header, host);
-	m_header = curl_slist_append(m_header, refer);
-
+	m_header = curl_slist_append(m_header,"Accept: text/html, application/xhtml+xml, */*");
+    m_header = curl_slist_append(m_header,"Accept-Language:zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3");
+    m_header = curl_slist_append(m_header,"Accept-Encoding:deflate");
+    m_header = curl_slist_append(m_header, refer);
+	m_header = curl_slist_append(m_header,"Connection:keep-alive");
+	
 	curl_easy_setopt(m_curl, CURLOPT_COOKIEJAR, "cookie.dat");        // 把服务器发过来的cookie保存到cookie.txt
 	curl_easy_setopt(m_curl, CURLOPT_HTTPHEADER, m_header);
 	curl_easy_setopt(m_curl, CURLOPT_URL, url);  
 	curl_easy_setopt(m_curl, CURLOPT_POSTFIELDS, params);  
 
 	// whether to use POST or NOT;
-	curl_easy_setopt(m_curl, CURLOPT_POST, usePost);	  
-	curl_easy_setopt(m_curl, CURLOPT_VERBOSE, 1);  
+	curl_easy_setopt(m_curl, CURLOPT_POST, usePost);	   
 	curl_easy_setopt(m_curl, CURLOPT_COOKIEFILE, "cookie.dat");
 	curl_easy_setopt(m_curl, CURLOPT_WRITEFUNCTION, &HttpClient::write_callback);  
 	curl_easy_setopt(m_curl, CURLOPT_WRITEDATA, file); 
@@ -116,10 +115,10 @@ void HttpLogin::loginServer()
 			singleParam = ci->first + "=" + ci->second + "&";
 			allParam.append(singleParam);
 		}
-		allParam = urlEncode(allParam);  // encode special characters.
+		allParam = urlEncode(allParam);  // translate special characters.
 		allParam += "tbUserName=" + m_strName + "&tbPassword=" + m_strPasswd + "&btnLogin=%E7%99%BB++%E5%BD%95&txtReturnUrl=http%3A%2F%2Fwww.cnblogs.com%2F";
-		initialConnection(0, allParam.c_str(), url, host, refer, file);
-		curl_easy_perform(getCurlHandle());
+		initialConnection(1, allParam.c_str(), url, host, refer, file);
+		res = curl_easy_perform(getCurlHandle());
 		fclose(file);
 
 		// start parse login result

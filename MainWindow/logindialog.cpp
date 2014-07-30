@@ -119,4 +119,9 @@ void LoginDialog::onThreadFinished()
 		m_loginBtn->setEnabled(true);
 		m_loginResult->setText(res);
 	}
+	QFile file(LOGIN_TEMP);
+	if (file.exists())
+	{
+		file.remove();
+	}
 }

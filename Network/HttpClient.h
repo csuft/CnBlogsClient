@@ -38,6 +38,7 @@ protected:
 	virtual bool downloadPage(int page = 1) = 0;
 	string urlEncode(const string& url);
 	unsigned char toHex(int x);
+	// this callback function must be static, otherwise the program will crash.
 	static size_t write_callback(char* data, int size, int nmemb, void* stream); 
 
 private:

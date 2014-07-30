@@ -9,10 +9,12 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QMessageBox>
+#include <QFile>
 
 #include "BaseCtrl/shadowwindow.h"
 #include "BaseCtrl/custompushbutton.h"
 #include "Network/HttpClient.h"
+#include "Network/Commons.h"
 
 /*
  * 登录窗口

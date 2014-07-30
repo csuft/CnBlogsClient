@@ -127,7 +127,6 @@ cnblogs::~cnblogs()
 
 }
 
-
 void cnblogs::onToolBtnClicked(const QString& obj)
 {
 	int index = obj.toInt();
@@ -199,7 +198,15 @@ void cnblogs::onOpenWithIEClicked()
 void cnblogs::onLoginClicked()
 {
 	LoginDialog* loginDlg = new LoginDialog();
+	connect(loginDlg, SIGNAL(loginSucceed()), this, SLOT(onLoginSucceed()));
 	loginDlg->exec();
+}
+
+void cnblogs::onLoginSucceed()
+{
+	m_loginBtn->setText(QStringLiteral("已登录"));
+	m_loginBtn->setEnabled(false);
+	isLogin = true;
 }
 
 void cnblogs::onAboutClicked()

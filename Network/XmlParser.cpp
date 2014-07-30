@@ -74,16 +74,16 @@ string XmlParser::getLoginResult(const char* fileName)
 		// 检查返回页面中的span元素，分几种情况：
 		// 1. 不存在span元素，则说明登录成功
 		// 2. 存在span元素，说明登录失败，返回错误提示
-		if (!start->isTag() && !start->tagName().compare("span"))
+		if (start->isTag() && !start->tagName().compare("span"))
 		{
 			start->parseAttributes();
 			if (!start->attribute("id").second.compare("Message"))
 			{
-				tempVal = start->text();
+				// 提取该标签的html内容
+				tempVal = (++start)->text();
 			}
 		}
 	}
-
 
 	return tempVal;
 }
@@ -133,7 +133,7 @@ void XmlParser::parseContents(vector<Article>& items, tree<HTML::Node>& dom)
 					}
 					if (!start->isTag())
 					{
-						// 原始文件中存在大量的非打印字符，如' ', '\t', '\n', '\r', '\v'，在这里去除掉
+						// 原始文件中存在大量的非打印字符，如' ', '\t', '\n', '\r', '\v'，在这里全部剔除
 						trimmedStr = start->text();
 						trimmedStr.erase(0,trimmedStr.find_first_not_of(" \t\v\r\n"));
 						trimmedStr.erase(trimmedStr.find_last_not_of(" \t\v\r\n") + 1);

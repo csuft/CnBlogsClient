@@ -73,6 +73,8 @@ void LoginDialog::onCloseClicked()
  */
 void LoginDialog::paintEvent(QPaintEvent* e)
 {
+	ShadowWindow::paintEvent(e);
+
 	QPainter painter(this);
 	painter.setPen(Qt::NoPen);
 	painter.setBrush(Qt::white);

@@ -45,6 +45,8 @@ AboutDialog::~AboutDialog()
 
 void AboutDialog::paintEvent(QPaintEvent* event)
 {
+	ShadowWindow::paintEvent(event);
+
 	QPainter painter(this);
 	painter.setPen(Qt::NoPen);
 	painter.setBrush(Qt::white);
